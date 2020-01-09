@@ -1,0 +1,2427 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="PycoQC computes metrics and generates interactive QC plots for Oxford Nanopore technologies sequencing data">
+      
+      
+        <link rel="canonical" href="https://a-slide.github.io/pycoQC/pycoQC/API_usage/">
+      
+      
+        <meta name="author" content="Adrien Leger & Tommaso Leonardi">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.0">
+    
+    
+      
+        <title>jupyter API usage - pycoQC</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.1b62728e.css">
+      
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.268332fc.js"></script>
+    
+    
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#pycoqc-api-usage" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://a-slide.github.io/pycoQC/" title="pycoQC" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              pycoQC
+            </span>
+            <span class="md-header-nav__topic">
+              
+                jupyter API usage
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/a-slide/pycoQC/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    a-slide/pycoQC
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://a-slide.github.io/pycoQC/" title="pycoQC" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    pycoQC
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/a-slide/pycoQC/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    a-slide/pycoQC
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../installation/" title="Installation instructions" class="md-nav__link">
+      Installation instructions
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      pycoQC Usage
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        pycoQC Usage
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../usage/" title="Using pycoQC" class="md-nav__link">
+      Using pycoQC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        jupyter API usage
+      </label>
+    
+    <a href="./" title="jupyter API usage" class="md-nav__link md-nav__link--active">
+      jupyter API usage
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#running-pycoqc-in-jupyter-notebook" class="md-nav__link">
+    Running pycoQC in Jupyter notebook
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    Imports
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-plotly-offline-plotting" class="md-nav__link">
+    For plotly offline plotting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-plotly-online-plotting" class="md-nav__link">
+    For plotly online plotting
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#initialisation" class="md-nav__link">
+    Initialisation
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-initialisation" class="md-nav__link">
+    Basic initialisation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initialisation-with-modification-of-the-pass-threshold" class="md-nav__link">
+    Initialisation with modification of the "pass" threshold
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initialisation-with-calibration-strand-filtering-out" class="md-nav__link">
+    Initialisation with calibration strand filtering out
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initialisation-with-summary-file-regex" class="md-nav__link">
+    Initialisation with summary file regex
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initialisation-with-guppy-barcoding-file-and-verbose-option" class="md-nav__link">
+    Initialisation with guppy barcoding file and verbose option
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initialisation-with-deepbinner-barcoding-file" class="md-nav__link">
+    Initialisation with Deepbinner barcoding file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initialisation-with-bam-files" class="md-nav__link">
+    Initialisation with Bam files
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generating-inline-plots-and-tables" class="md-nav__link">
+    Generating inline plots and tables
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interaction-with-plotly-library" class="md-nav__link">
+    Interaction with Plotly library
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-arguments" class="md-nav__link">
+    Common arguments
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary_stats_dict" class="md-nav__link">
+    summary_stats_dict
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-table-methods" class="md-nav__link">
+    summary table methods
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run_summary" class="md-nav__link">
+    run_summary
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basecall_summary" class="md-nav__link">
+    basecall_summary
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alignment_summary" class="md-nav__link">
+    alignment_summary
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-length-and-mean-quality-distribution" class="md-nav__link">
+    Read Length and Mean quality distribution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sequencing-output-quality-and-length-over-experiment-time" class="md-nav__link">
+    Sequencing output, quality and length over experiment time
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#barcode-distribution" class="md-nav__link">
+    Barcode distribution
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#albacore-output-example" class="md-nav__link">
+    Albacore output example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guppy-21-output-example" class="md-nav__link">
+    Guppy 2.1 output example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deepbinner-output-example" class="md-nav__link">
+    Deepbinner output example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#channels-activity-over-time" class="md-nav__link">
+    Channels activity over time
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alignment-length-and-score-distribution" class="md-nav__link">
+    Alignment length and score distribution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alignments-summaries-and-coverage" class="md-nav__link">
+    Alignments summaries and coverage
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generating-html-and-json-reports" class="md-nav__link">
+    Generating HTML and json reports
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../CLI_usage/" title="Command line usage" class="md-nav__link">
+      Command line usage
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Barcode_split Usage
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Barcode_split Usage
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Barcode_split/usage/" title="Using Barcode_split" class="md-nav__link">
+      Using Barcode_split
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Barcode_split/API_usage/" title="jupyter API usage" class="md-nav__link">
+      jupyter API usage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Barcode_split/CLI_usage/" title="Command line usage" class="md-nav__link">
+      Command line usage
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Fast5_to_seq_summary Usage
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Fast5_to_seq_summary Usage
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Fast5_to_seq_summary/usage/" title="Using Fast5_to_seq_summary" class="md-nav__link">
+      Using Fast5_to_seq_summary
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Fast5_to_seq_summary/API_usage/" title="jupyter API usage" class="md-nav__link">
+      jupyter API usage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Fast5_to_seq_summary/CLI_usage/" title="Command line usage" class="md-nav__link">
+      Command line usage
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../citing/" title="Citing pycoQC" class="md-nav__link">
+      Citing pycoQC
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../acknowledgements/" title="Acknowledgements" class="md-nav__link">
+      Acknowledgements
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../alternative/" title="Alternative and complementary packages" class="md-nav__link">
+      Alternative and complementary packages
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../contributing/" title="Contributing Guidelines" class="md-nav__link">
+      Contributing Guidelines
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../code_of_conduct/" title="Code of conduct" class="md-nav__link">
+      Code of conduct
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../licence/" title="Licence" class="md-nav__link">
+      Licence
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../changelog/" title="Changelog" class="md-nav__link">
+      Changelog
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#running-pycoqc-in-jupyter-notebook" class="md-nav__link">
+    Running pycoQC in Jupyter notebook
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    Imports
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-plotly-offline-plotting" class="md-nav__link">
+    For plotly offline plotting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-plotly-online-plotting" class="md-nav__link">
+    For plotly online plotting
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#initialisation" class="md-nav__link">
+    Initialisation
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-initialisation" class="md-nav__link">
+    Basic initialisation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initialisation-with-modification-of-the-pass-threshold" class="md-nav__link">
+    Initialisation with modification of the "pass" threshold
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initialisation-with-calibration-strand-filtering-out" class="md-nav__link">
+    Initialisation with calibration strand filtering out
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initialisation-with-summary-file-regex" class="md-nav__link">
+    Initialisation with summary file regex
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initialisation-with-guppy-barcoding-file-and-verbose-option" class="md-nav__link">
+    Initialisation with guppy barcoding file and verbose option
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initialisation-with-deepbinner-barcoding-file" class="md-nav__link">
+    Initialisation with Deepbinner barcoding file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initialisation-with-bam-files" class="md-nav__link">
+    Initialisation with Bam files
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generating-inline-plots-and-tables" class="md-nav__link">
+    Generating inline plots and tables
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interaction-with-plotly-library" class="md-nav__link">
+    Interaction with Plotly library
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-arguments" class="md-nav__link">
+    Common arguments
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary_stats_dict" class="md-nav__link">
+    summary_stats_dict
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-table-methods" class="md-nav__link">
+    summary table methods
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run_summary" class="md-nav__link">
+    run_summary
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basecall_summary" class="md-nav__link">
+    basecall_summary
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alignment_summary" class="md-nav__link">
+    alignment_summary
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-length-and-mean-quality-distribution" class="md-nav__link">
+    Read Length and Mean quality distribution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sequencing-output-quality-and-length-over-experiment-time" class="md-nav__link">
+    Sequencing output, quality and length over experiment time
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#barcode-distribution" class="md-nav__link">
+    Barcode distribution
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#albacore-output-example" class="md-nav__link">
+    Albacore output example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guppy-21-output-example" class="md-nav__link">
+    Guppy 2.1 output example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deepbinner-output-example" class="md-nav__link">
+    Deepbinner output example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#channels-activity-over-time" class="md-nav__link">
+    Channels activity over time
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alignment-length-and-score-distribution" class="md-nav__link">
+    Alignment length and score distribution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alignments-summaries-and-coverage" class="md-nav__link">
+    Alignments summaries and coverage
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generating-html-and-json-reports" class="md-nav__link">
+    Generating HTML and json reports
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/a-slide/pycoQC/edit/master/docs/pycoQC/API_usage.ipynb" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="pycoqc-api-usage">pycoQC API Usage</h1>
+<p>pycoQC is a simple class that is initialized with a text summary file generated by ONT Albacore or Guppy.</p>
+<p>The instantiated object can be subsequently called with various methods that will generates tables and plots.</p>
+<p>There are a few different ways to get help for all the public package functions:</p>
+<ul>
+<li>In a separate window with the jupyter magic "?": <code class="codehilite"><span class="err">?pycoQC.channels_activity</span></code></li>
+<li>In an output cell with the standard help function: <code class="codehilite"><span class="err">help (pycoQC.channels_activity)</span></code></li>
+<li>Inline with the cursor on the function of interest use <code class="codehilite"><span class="err">shift</span></code> + <code class="codehilite"><span class="err">tab</span></code> </li>
+</ul>
+<h2 id="running-pycoqc-in-jupyter-notebook">Running pycoQC in Jupyter notebook</h2>
+<p>If you want to run pycoQC interactively in Jupyter you need to install Jupyter manually. If you installed pycoQC in a virtual environment then install Jupyter in the same virtual environment.</p>
+<div class="codehilite"><pre><span></span>pip3 install notebook
+</pre></div>
+
+<p>Launch the notebook in a shell terminal</p>
+<div class="codehilite"><pre><span></span>jupyter notebook
+</pre></div>
+
+<p>If it does not auto-start, open the following URL in you favorite web browser <a href="http://localhost:8888/tree">http://localhost:8888/tree</a></p>
+<p>From Jupyter homepage you can navigate to the directory you want to work in and create a new Python3 Notebook.</p>
+<h2 id="imports">Imports</h2>
+<h3 id="for-plotly-offline-plotting">For plotly offline plotting</h3>
+<p>Import pycoQC main class as well as Plotly and enable inline plotting in the current Notebook.</p>
+<p>This is the recommended option. This ensures that your all your data are stored inside the notebook.</p>
+<p>The limitation is that if generating many plots with large datasets the notebook will become quite heavy and slow.   </p>
+<div class="codehilite"><pre><span></span><span class="c1"># Run cell with Ctrl + Enter in Jupyter</span>
+
+<span class="c1"># Import main pycoQC module</span>
+<span class="kn">from</span> <span class="nn">pycoQC.pycoQC</span> <span class="kn">import</span> <span class="n">pycoQC</span>
+<span class="kn">from</span> <span class="nn">pycoQC.pycoQC_plot</span> <span class="kn">import</span> <span class="n">pycoQC_plot</span>
+
+<span class="c1"># Import helper functions from pycoQC</span>
+<span class="kn">from</span> <span class="nn">pycoQC.common</span> <span class="kn">import</span> <span class="n">jhelp</span>
+
+<span class="c1"># Import and setup plotly for offline plotting in Jupyter </span>
+<span class="kn">from</span> <span class="nn">plotly.offline</span> <span class="kn">import</span> <span class="n">init_notebook_mode</span>
+<span class="n">init_notebook_mode</span> <span class="p">(</span><span class="n">connected</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+<h3 id="for-plotly-online-plotting">For plotly online plotting</h3>
+<p>This option takes advantage of Plotly web-service for hosting graphs. This requires to set up an account (<a href="https://plot.ly/python/getting-started/#initialization-for-online-plotting">https://plot.ly/python/getting-started/#initialization-for-online-plotting</a>) and to provide credentials in the notebook. This could be a good option for easy sharing of the interactive plots generated by pycoQC.</p>
+<div class="codehilite"><pre><span></span><span class="c1"># Only run this cell if you have set up a plotly account before and wants to use Plotly web-service </span>
+<span class="c1"># from plotly.plotly import plot, iplot</span>
+<span class="c1"># import plotly.tools as pt</span>
+<span class="c1"># pt.set_credentials_file (username=&quot;XXXXXXXXXX&quot;, api_key=&quot;XXXXXXXXXX&quot;)</span>
+</pre></div>
+
+<h2 id="initialisation">Initialisation</h2>
+<p>Upon initialization pycoQC reads the sequencing summary file, runs a series of tests and pre-process the data for plotting methods.</p>
+<div class="codehilite"><pre><span></span><span class="n">jhelp</span> <span class="p">(</span><span class="n">pycoQC</span><span class="p">)</span>
+</pre></div>
+
+<p><strong>pycoQC</strong> (summary_file, barcode_file, bam_file, runid_list, filter_calibration, filter_duplicated, min_barcode_percent, min_pass_qual, min_pass_len, sample, html_outfile, report_title, config_file, template_file, json_outfile, verbose, quiet)</p>
+<p>Parse Albacore sequencing_summary.txt file and clean-up the data</p>
+<hr />
+<ul>
+<li><strong>summary_file</strong> (required) [str]</li>
+</ul>
+<p>Path to a sequencing_summary generated by Albacore 1.0.0 + (read_fast5_basecaller.py) / Guppy 2.1.3+ (guppy_basecaller). One can also pass multiple space separated file paths or a UNIX style regex matching multiple files</p>
+<ul>
+<li><strong>barcode_file</strong> (default: "") [str]</li>
+</ul>
+<p>Path to the barcode_file generated by Guppy 2.1.3+ (guppy_barcoder) or Deepbinner 0.2.0+. This is not a required file. One can also pass multiple space separated file paths or a UNIX style regex matching multiple files</p>
+<ul>
+<li><strong>bam_file</strong> (default: "") [str]</li>
+</ul>
+<p>Path to a Bam file corresponding to reads in the summary_file. Preferably aligned with Minimap2 One can also pass multiple space separated file paths or a UNIX style regex matching multiple files</p>
+<ul>
+<li><strong>runid_list</strong> (default: []) [list]</li>
+</ul>
+<p>Select only specific runids to be analysed. Can also be used to force pycoQC to order the runids for temporal plots, if the sequencing_summary file contain several sucessive runs. By default pycoQC analyses all the runids in the file and uses the runid order as defined in the file.</p>
+<ul>
+<li><strong>filter_calibration</strong> (default: False) [bool]</li>
+</ul>
+<p>If True read flagged as calibration strand by the software are removed</p>
+<ul>
+<li><strong>filter_duplicated</strong> (default: False) [bool]</li>
+</ul>
+<p>If True duplicated read_ids are removed but the first occurence is kept (Guppy sometimes outputs the same read multiple times)</p>
+<ul>
+<li><strong>min_barcode_percent</strong> (default: 0.1) [float]</li>
+</ul>
+<p>Minimal percent of total reads to retain barcode label. If below the barcode value is set as <code class="codehilite"><span class="err">unclassified</span></code>.</p>
+<ul>
+<li><strong>min_pass_qual</strong> (default: 7) [float]</li>
+</ul>
+<p>Minimum quality to consider a read as 'pass'</p>
+<ul>
+<li><strong>min_pass_len</strong> (default: 0) [int]</li>
+</ul>
+<p>Minimum read length to consider a read as 'pass'</p>
+<ul>
+<li><strong>sample</strong> (default: 100000) [int]</li>
+</ul>
+<p>If not None a n number of reads will be randomly selected instead of the entire dataset for ploting function (deterministic sampling)</p>
+<ul>
+<li><strong>html_outfile</strong> (default: "") [str]</li>
+</ul>
+<p>Path to an output html file report</p>
+<ul>
+<li><strong>report_title</strong> (default: PycoQC report) [str]</li>
+</ul>
+<p>Title to use in the html report</p>
+<ul>
+<li><strong>config_file</strong> (default: "") [str]</li>
+</ul>
+<p>Path to a JSON configuration file for the html report. If not provided, falls back to default parameters. The first level keys are the names of the plots to be included. The second level keys are the parameters to pass to each plotting function</p>
+<ul>
+<li><strong>template_file</strong> (default: "") [str]</li>
+</ul>
+<p>Jinja2 html template for the html report</p>
+<ul>
+<li><strong>json_outfile</strong> (default: "") [str]</li>
+</ul>
+<p>Path to an output json file report</p>
+<ul>
+<li><strong>verbose</strong> (default: False) [bool]</li>
+</ul>
+<p>Increase verbosity</p>
+<ul>
+<li><strong>quiet</strong> (default: False) [bool]</li>
+</ul>
+<p>Reduce verbosity</p>
+<h3 id="basic-initialisation">Basic initialisation</h3>
+<div class="codehilite"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">pycoQC</span><span class="p">(</span><span class="s2">&quot;./data/Albacore-1.7.0_basecall-1D-DNA_sequencing_summary.txt.gz&quot;</span><span class="p">)</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="err">Checking arguments values</span>
+<span class="err">Check input data files</span>
+<span class="err">Parse data files</span>
+<span class="err">Merge data</span>
+<span class="err">Cleaning data</span>
+<span class="err">    Discarding lines containing NA values</span>
+<span class="err">        0 reads discarded</span>
+<span class="err">    Filtering out zero length reads</span>
+<span class="err">        438 reads discarded</span>
+<span class="err">    Sorting run IDs by decreasing throughput</span>
+<span class="err">        Run-id order [&#39;db5916f2fe7957afac1d0aaccdec883342c4bc31&#39;]</span>
+<span class="err">    Reordering runids</span>
+<span class="err">        Processing reads with Run_ID db5916f2fe7957afac1d0aaccdec883342c4bc31 / time offset: 0</span>
+<span class="err">    Cleaning up low frequency barcodes</span>
+<span class="err">        0 reads with low frequency barcode unset</span>
+<span class="err">    Cast value to appropriate type</span>
+<span class="err">    Reindexing dataframe by read_ids</span>
+<span class="err">        9,562 Final valid reads</span>
+<span class="err">Loading plotting interface</span>
+<span class="err">    Found 9,562 total reads</span>
+<span class="err">    Found 8,042 pass reads (qual &gt;= 7.0 and length &gt;= 0)</span>
+</pre></div>
+
+
+<h3 id="initialisation-with-modification-of-the-pass-threshold">Initialisation with modification of the "pass" threshold</h3>
+<div class="codehilite"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">pycoQC</span><span class="p">(</span><span class="s2">&quot;./data/Albacore-1.7.0_basecall-1D-DNA_sequencing_summary.txt.gz&quot;</span><span class="p">,</span> <span class="n">min_pass_len</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">min_pass_qual</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="err">Checking arguments values</span>
+<span class="err">Check input data files</span>
+<span class="err">Parse data files</span>
+<span class="err">Merge data</span>
+<span class="err">Cleaning data</span>
+<span class="err">    Discarding lines containing NA values</span>
+<span class="err">        0 reads discarded</span>
+<span class="err">    Filtering out zero length reads</span>
+<span class="err">        438 reads discarded</span>
+<span class="err">    Sorting run IDs by decreasing throughput</span>
+<span class="err">        Run-id order [&#39;db5916f2fe7957afac1d0aaccdec883342c4bc31&#39;]</span>
+<span class="err">    Reordering runids</span>
+<span class="err">        Processing reads with Run_ID db5916f2fe7957afac1d0aaccdec883342c4bc31 / time offset: 0</span>
+<span class="err">    Cleaning up low frequency barcodes</span>
+<span class="err">        0 reads with low frequency barcode unset</span>
+<span class="err">    Cast value to appropriate type</span>
+<span class="err">    Reindexing dataframe by read_ids</span>
+<span class="err">        9,562 Final valid reads</span>
+<span class="err">Loading plotting interface</span>
+<span class="err">    Found 9,562 total reads</span>
+<span class="err">    Found 6,693 pass reads (qual &gt;= 8.0 and length &gt;= 200)</span>
+</pre></div>
+
+
+<h3 id="initialisation-with-calibration-strand-filtering-out">Initialisation with calibration strand filtering out</h3>
+<div class="codehilite"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">pycoQC</span><span class="p">(</span><span class="s2">&quot;./data/Albacore-1.7.0_basecall-1D-DNA_sequencing_summary.txt.gz&quot;</span><span class="p">,</span> <span class="n">filter_calibration</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="err">Checking arguments values</span>
+<span class="err">Check input data files</span>
+<span class="err">Parse data files</span>
+<span class="err">Merge data</span>
+<span class="err">Cleaning data</span>
+<span class="err">    Discarding lines containing NA values</span>
+<span class="err">        0 reads discarded</span>
+<span class="err">    Filtering out zero length reads</span>
+<span class="err">        438 reads discarded</span>
+<span class="err">    Filtering out calibration strand reads</span>
+<span class="err">        2,605 reads discarded</span>
+<span class="err">    Sorting run IDs by decreasing throughput</span>
+<span class="err">        Run-id order [&#39;db5916f2fe7957afac1d0aaccdec883342c4bc31&#39;]</span>
+<span class="err">    Reordering runids</span>
+<span class="err">        Processing reads with Run_ID db5916f2fe7957afac1d0aaccdec883342c4bc31 / time offset: 0</span>
+<span class="err">    Cleaning up low frequency barcodes</span>
+<span class="err">        0 reads with low frequency barcode unset</span>
+<span class="err">    Cast value to appropriate type</span>
+<span class="err">    Reindexing dataframe by read_ids</span>
+<span class="err">        6,957 Final valid reads</span>
+<span class="err">Loading plotting interface</span>
+<span class="err">    Found 6,957 total reads</span>
+<span class="err">    Found 5,594 pass reads (qual &gt;= 7.0 and length &gt;= 0)</span>
+</pre></div>
+
+
+<h3 id="initialisation-with-summary-file-regex">Initialisation with summary file regex</h3>
+<div class="codehilite"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">pycoQC</span><span class="p">(</span><span class="s2">&quot;./data/*RNA*&quot;</span><span class="p">)</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="err">Checking arguments values</span>
+<span class="err">Check input data files</span>
+<span class="err">Parse data files</span>
+<span class="err">Merge data</span>
+<span class="err">Cleaning data</span>
+<span class="err">    Discarding lines containing NA values</span>
+<span class="err">        0 reads discarded</span>
+<span class="err">    Filtering out zero length reads</span>
+<span class="err">        813 reads discarded</span>
+<span class="err">    Sorting run IDs by decreasing throughput</span>
+<span class="err">        Run-id order [&#39;7ae4f0a6d2b7ba3e0248496b7de9cd5d1c028415&#39;, &#39;5074e0cd71f372314c30ca5158aab2172d915023&#39;, &#39;9835d20f1d205bdbd1fb4d464ae778de95beab24&#39;, &#39;c675730269f2f96f300f1cfa613fe89c53b344c3&#39;, &#39;2b9163100702bba6ac29d37dbc96ccad740aa05d&#39;, &#39;d0054681152930b21276405d948b115e46968ca6&#39;, &#39;71055637dd56eca9416305332eba1ed37bbfffe1&#39;, &#39;db5916f2fe7957afac1d0aaccdec883342c4bc31&#39;, &#39;93fa1ad3ebc8a6e505d991bcb052c2b8ceb278b5&#39;, &#39;17b317b994031430f350cda1dc13a72f66572ece&#39;]</span>
+<span class="err">    Reordering runids</span>
+<span class="err">        Processing reads with Run_ID 7ae4f0a6d2b7ba3e0248496b7de9cd5d1c028415 / time offset: 0</span>
+<span class="err">        Processing reads with Run_ID 5074e0cd71f372314c30ca5158aab2172d915023 / time offset: 5309.74734</span>
+<span class="err">        Processing reads with Run_ID 9835d20f1d205bdbd1fb4d464ae778de95beab24 / time offset: 15911.26726</span>
+<span class="err">        Processing reads with Run_ID c675730269f2f96f300f1cfa613fe89c53b344c3 / time offset: 183649.42351</span>
+<span class="err">        Processing reads with Run_ID 2b9163100702bba6ac29d37dbc96ccad740aa05d / time offset: 184044.468</span>
+<span class="err">        Processing reads with Run_ID d0054681152930b21276405d948b115e46968ca6 / time offset: 184432.95738</span>
+<span class="err">        Processing reads with Run_ID 71055637dd56eca9416305332eba1ed37bbfffe1 / time offset: 184828.68148</span>
+<span class="err">        Processing reads with Run_ID db5916f2fe7957afac1d0aaccdec883342c4bc31 / time offset: 229024.07989</span>
+<span class="err">        Processing reads with Run_ID 93fa1ad3ebc8a6e505d991bcb052c2b8ceb278b5 / time offset: 401812.72839</span>
+<span class="err">        Processing reads with Run_ID 17b317b994031430f350cda1dc13a72f66572ece / time offset: 402176.51159</span>
+<span class="err">    Cast value to appropriate type</span>
+<span class="err">    Reindexing dataframe by read_ids</span>
+<span class="err">        39,187 Final valid reads</span>
+<span class="err">Loading plotting interface</span>
+<span class="err">    Found 39,187 total reads</span>
+<span class="err">    Found 31,661 pass reads (qual &gt;= 7.0 and length &gt;= 0)</span>
+</pre></div>
+
+
+<h3 id="initialisation-with-guppy-barcoding-file-and-verbose-option">Initialisation with guppy barcoding file and verbose option</h3>
+<div class="codehilite"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">pycoQC</span><span class="p">(</span>
+    <span class="n">summary_file</span><span class="o">=</span><span class="s2">&quot;./data/Guppy-2.1.3_basecall-1D-DNA_sequencing_summary.txt.gz&quot;</span><span class="p">,</span>
+    <span class="n">barcode_file</span><span class="o">=</span><span class="s2">&quot;./data/Guppy-2.1.3_basecall-1D_DNA_barcoding_summary.txt.gz&quot;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="n">Checking</span> <span class="n">arguments</span> <span class="k">values</span>
+<span class="k">General</span> <span class="n">info</span>
+    <span class="n">package_name</span><span class="p">:</span> <span class="n">pycoQC</span>
+    <span class="n">package_version</span><span class="p">:</span> <span class="mi">2</span><span class="p">.</span><span class="mi">5</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">18</span>
+    <span class="k">timestamp</span><span class="p">:</span> <span class="mi">2020</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">09</span> <span class="mi">17</span><span class="p">:</span><span class="mi">14</span><span class="p">:</span><span class="mi">34</span><span class="p">.</span><span class="mi">990515</span>
+
+<span class="n">Runtime</span> <span class="k">options</span>
+    <span class="n">quiet</span><span class="p">:</span> <span class="k">False</span>
+    <span class="k">verbose</span><span class="p">:</span> <span class="k">True</span>
+    <span class="n">json_outfile</span><span class="p">:</span> 
+    <span class="n">template_file</span><span class="p">:</span> 
+    <span class="n">config_file</span><span class="p">:</span> 
+    <span class="n">report_title</span><span class="p">:</span> <span class="n">PycoQC</span> <span class="n">report</span>
+    <span class="n">html_outfile</span><span class="p">:</span> 
+    <span class="n">sample</span><span class="p">:</span> <span class="mi">100000</span>
+    <span class="n">min_pass_len</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="n">min_pass_qual</span><span class="p">:</span> <span class="mi">7</span>
+    <span class="n">min_barcode_percent</span><span class="p">:</span> <span class="mi">0</span><span class="p">.</span><span class="mi">1</span>
+    <span class="n">filter_duplicated</span><span class="p">:</span> <span class="k">False</span>
+    <span class="n">filter_calibration</span><span class="p">:</span> <span class="k">False</span>
+    <span class="n">runid_list</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="n">bam_file</span><span class="p">:</span> 
+    <span class="n">barcode_file</span><span class="p">:</span> <span class="p">.</span><span class="o">/</span><span class="k">data</span><span class="o">/</span><span class="n">Guppy</span><span class="o">-</span><span class="mi">2</span><span class="p">.</span><span class="mi">1</span><span class="p">.</span><span class="mi">3</span><span class="n">_basecall</span><span class="o">-</span><span class="mi">1</span><span class="n">D_DNA_barcoding_summary</span><span class="p">.</span><span class="n">txt</span><span class="p">.</span><span class="n">gz</span>
+    <span class="n">summary_file</span><span class="p">:</span> <span class="p">.</span><span class="o">/</span><span class="k">data</span><span class="o">/</span><span class="n">Guppy</span><span class="o">-</span><span class="mi">2</span><span class="p">.</span><span class="mi">1</span><span class="p">.</span><span class="mi">3</span><span class="n">_basecall</span><span class="o">-</span><span class="mi">1</span><span class="n">D</span><span class="o">-</span><span class="n">DNA_sequencing_summary</span><span class="p">.</span><span class="n">txt</span><span class="p">.</span><span class="n">gz</span>
+
+<span class="k">Check</span> <span class="k">input</span> <span class="k">data</span> <span class="n">files</span>
+        <span class="n">Sequencing</span> <span class="n">summary</span> <span class="n">files</span> <span class="k">found</span><span class="p">:</span> <span class="p">.</span><span class="o">/</span><span class="k">data</span><span class="o">/</span><span class="n">Guppy</span><span class="o">-</span><span class="mi">2</span><span class="p">.</span><span class="mi">1</span><span class="p">.</span><span class="mi">3</span><span class="n">_basecall</span><span class="o">-</span><span class="mi">1</span><span class="n">D</span><span class="o">-</span><span class="n">DNA_sequencing_summary</span><span class="p">.</span><span class="n">txt</span><span class="p">.</span><span class="n">gz</span>
+        <span class="n">Barcode</span> <span class="n">files</span> <span class="k">found</span><span class="p">:</span> <span class="p">.</span><span class="o">/</span><span class="k">data</span><span class="o">/</span><span class="n">Guppy</span><span class="o">-</span><span class="mi">2</span><span class="p">.</span><span class="mi">1</span><span class="p">.</span><span class="mi">3</span><span class="n">_basecall</span><span class="o">-</span><span class="mi">1</span><span class="n">D_DNA_barcoding_summary</span><span class="p">.</span><span class="n">txt</span><span class="p">.</span><span class="n">gz</span>
+<span class="n">Parse</span> <span class="k">data</span> <span class="n">files</span>
+    <span class="n">Parse</span> <span class="n">summary</span> <span class="n">files</span>
+    <span class="k">Rename</span> <span class="n">summary</span> <span class="n">sequencing</span> <span class="n">columns</span>
+    <span class="n">Verifying</span> <span class="n">fields</span> <span class="k">and</span> <span class="n">discarding</span> <span class="n">unused</span> <span class="n">columns</span>
+        <span class="mi">10</span><span class="p">,</span><span class="mi">000</span> <span class="k">reads</span> <span class="k">found</span> <span class="k">in</span> <span class="n">initial</span> <span class="n">file</span>
+    <span class="n">Parse</span> <span class="n">barcode</span> <span class="n">files</span>
+        <span class="k">Found</span> <span class="k">valid</span> <span class="n">Guppy</span> <span class="n">barcode</span> <span class="n">file</span>
+        <span class="mi">9</span><span class="p">,</span><span class="mi">080</span> <span class="k">reads</span> <span class="k">with</span> <span class="n">barcodes</span> <span class="n">assigned</span>
+<span class="n">Merge</span> <span class="k">data</span>
+<span class="n">Cleaning</span> <span class="k">data</span>
+    <span class="n">Discarding</span> <span class="n">lines</span> <span class="n">containing</span> <span class="n">NA</span> <span class="k">values</span>
+        <span class="mi">0</span> <span class="k">reads</span> <span class="n">discarded</span>
+    <span class="n">Filtering</span> <span class="k">out</span> <span class="n">zero</span> <span class="k">length</span> <span class="k">reads</span>
+        <span class="mi">0</span> <span class="k">reads</span> <span class="n">discarded</span>
+    <span class="n">Sorting</span> <span class="n">run</span> <span class="n">IDs</span> <span class="k">by</span> <span class="n">decreasing</span> <span class="n">throughput</span>
+        <span class="n">Run</span><span class="o">-</span><span class="n">id</span> <span class="k">order</span> <span class="p">[</span><span class="s1">&#39;c4981b897c2bb47fed99916c19c9bd1bd43267a2&#39;</span><span class="p">]</span>
+    <span class="n">Reordering</span> <span class="n">runids</span>
+        <span class="n">Processing</span> <span class="k">reads</span> <span class="k">with</span> <span class="n">Run_ID</span> <span class="n">c4981b897c2bb47fed99916c19c9bd1bd43267a2</span> <span class="o">/</span> <span class="n">time</span> <span class="k">offset</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="n">Cleaning</span> <span class="n">up</span> <span class="n">low</span> <span class="n">frequency</span> <span class="n">barcodes</span>
+        <span class="mi">0</span> <span class="k">reads</span> <span class="k">with</span> <span class="n">low</span> <span class="n">frequency</span> <span class="n">barcode</span> <span class="n">unset</span>
+    <span class="k">Cast</span> <span class="n">value</span> <span class="k">to</span> <span class="n">appropriate</span> <span class="k">type</span>
+    <span class="n">Reindexing</span> <span class="n">dataframe</span> <span class="k">by</span> <span class="n">read_ids</span>
+        <span class="mi">10</span><span class="p">,</span><span class="mi">000</span> <span class="k">Final</span> <span class="k">valid</span> <span class="k">reads</span>
+<span class="n">Parser</span> <span class="n">stats</span>
+    <span class="n">Summary</span> <span class="n">files</span> <span class="k">found</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="n">Barcode</span> <span class="n">files</span> <span class="k">found</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="n">Initial</span> <span class="k">reads</span><span class="p">:</span> <span class="mi">10000</span>
+    <span class="k">Reads</span> <span class="k">with</span> <span class="n">barcodes</span><span class="p">:</span> <span class="mi">9080</span>
+    <span class="k">Reads</span> <span class="k">with</span> <span class="n">NA</span> <span class="k">values</span> <span class="n">discarded</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="n">Zero</span> <span class="k">length</span> <span class="k">reads</span> <span class="n">discarded</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="k">Reads</span> <span class="k">with</span> <span class="n">low</span> <span class="n">frequency</span> <span class="n">barcode</span> <span class="n">unset</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="k">Valid</span> <span class="k">reads</span><span class="p">:</span> <span class="mi">10000</span>
+
+<span class="n">Loading</span> <span class="n">plotting</span> <span class="n">interface</span>
+    <span class="k">Found</span> <span class="mi">10</span><span class="p">,</span><span class="mi">000</span> <span class="n">total</span> <span class="k">reads</span>
+    <span class="k">Found</span> <span class="mi">9</span><span class="p">,</span><span class="mi">065</span> <span class="n">pass</span> <span class="k">reads</span> <span class="p">(</span><span class="n">qual</span> <span class="o">&gt;=</span> <span class="mi">7</span><span class="p">.</span><span class="mi">0</span> <span class="k">and</span> <span class="k">length</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">Plotter</span> <span class="n">stats</span>
+    <span class="n">Barcode</span><span class="p">:</span> <span class="k">True</span>
+    <span class="n">Alignment</span><span class="p">:</span> <span class="k">False</span>
+    <span class="n">Promethion</span><span class="p">:</span> <span class="k">False</span>
+    <span class="k">All</span> <span class="k">reads</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span><span class="mi">000</span>
+    <span class="k">All</span> <span class="n">bases</span><span class="p">:</span> <span class="mi">31</span><span class="p">,</span><span class="mi">634</span><span class="p">,</span><span class="mi">280</span>
+    <span class="k">All</span> <span class="n">median</span> <span class="k">read</span> <span class="k">length</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span><span class="mi">223</span><span class="p">.</span><span class="mi">5</span>
+    <span class="n">Pass</span> <span class="k">reads</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span><span class="mi">065</span>
+    <span class="n">Pass</span> <span class="n">bases</span><span class="p">:</span> <span class="mi">29</span><span class="p">,</span><span class="mi">973</span><span class="p">,</span><span class="mi">906</span>
+    <span class="n">Pass</span> <span class="n">median</span> <span class="k">read</span> <span class="k">length</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span><span class="mi">297</span><span class="p">.</span><span class="mi">0</span>
+
+
+
+    <span class="n">Barcode</span><span class="p">:</span> <span class="k">True</span>
+    <span class="n">Alignment</span><span class="p">:</span> <span class="k">False</span>
+    <span class="n">Promethion</span><span class="p">:</span> <span class="k">False</span>
+    <span class="k">All</span> <span class="k">reads</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span><span class="mi">000</span>
+    <span class="k">All</span> <span class="n">bases</span><span class="p">:</span> <span class="mi">31</span><span class="p">,</span><span class="mi">634</span><span class="p">,</span><span class="mi">280</span>
+    <span class="k">All</span> <span class="n">median</span> <span class="k">read</span> <span class="k">length</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span><span class="mi">223</span><span class="p">.</span><span class="mi">5</span>
+    <span class="n">Pass</span> <span class="k">reads</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span><span class="mi">065</span>
+    <span class="n">Pass</span> <span class="n">bases</span><span class="p">:</span> <span class="mi">29</span><span class="p">,</span><span class="mi">973</span><span class="p">,</span><span class="mi">906</span>
+    <span class="n">Pass</span> <span class="n">median</span> <span class="k">read</span> <span class="k">length</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span><span class="mi">297</span><span class="p">.</span><span class="mi">0</span>
+</pre></div>
+
+
+<h3 id="initialisation-with-deepbinner-barcoding-file">Initialisation with Deepbinner barcoding file</h3>
+<div class="codehilite"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">pycoQC</span><span class="p">(</span>
+    <span class="n">summary_file</span><span class="o">=</span><span class="s2">&quot;./data/Guppy-basecall-1D-DNA_sequencing_summary.txt.gz&quot;</span><span class="p">,</span>
+    <span class="n">barcode_file</span><span class="o">=</span><span class="s2">&quot;./data/Guppy-basecall-1D-DNA_deepbinner_barcoding_summary.txt.gz&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="n">Checking</span> <span class="n">arguments</span> <span class="k">values</span>
+<span class="k">Check</span> <span class="k">input</span> <span class="k">data</span> <span class="n">files</span>
+<span class="n">Parse</span> <span class="k">data</span> <span class="n">files</span>
+<span class="n">Merge</span> <span class="k">data</span>
+<span class="n">Cleaning</span> <span class="k">data</span>
+    <span class="n">Discarding</span> <span class="n">lines</span> <span class="n">containing</span> <span class="n">NA</span> <span class="k">values</span>
+        <span class="mi">0</span> <span class="k">reads</span> <span class="n">discarded</span>
+    <span class="n">Filtering</span> <span class="k">out</span> <span class="n">zero</span> <span class="k">length</span> <span class="k">reads</span>
+        <span class="mi">0</span> <span class="k">reads</span> <span class="n">discarded</span>
+    <span class="n">Sorting</span> <span class="n">run</span> <span class="n">IDs</span> <span class="k">by</span> <span class="n">decreasing</span> <span class="n">throughput</span>
+        <span class="n">Run</span><span class="o">-</span><span class="n">id</span> <span class="k">order</span> <span class="p">[</span><span class="s1">&#39;4318773ae77000ada4c30d67466f7a0462cd5c7a&#39;</span><span class="p">,</span> <span class="s1">&#39;13797ccf3e2df77597eb86d8e23088d7f34ba047&#39;</span><span class="p">]</span>
+    <span class="n">Reordering</span> <span class="n">runids</span>
+        <span class="n">Processing</span> <span class="k">reads</span> <span class="k">with</span> <span class="n">Run_ID</span> <span class="mi">4318773</span><span class="n">ae77000ada4c30d67466f7a0462cd5c7a</span> <span class="o">/</span> <span class="n">time</span> <span class="k">offset</span><span class="p">:</span> <span class="mi">0</span>
+        <span class="n">Processing</span> <span class="k">reads</span> <span class="k">with</span> <span class="n">Run_ID</span> <span class="mi">13797</span><span class="n">ccf3e2df77597eb86d8e23088d7f34ba047</span> <span class="o">/</span> <span class="n">time</span> <span class="k">offset</span><span class="p">:</span> <span class="mi">63</span><span class="p">.</span><span class="mi">148499</span>
+    <span class="n">Cleaning</span> <span class="n">up</span> <span class="n">low</span> <span class="n">frequency</span> <span class="n">barcodes</span>
+        <span class="mi">0</span> <span class="k">reads</span> <span class="k">with</span> <span class="n">low</span> <span class="n">frequency</span> <span class="n">barcode</span> <span class="n">unset</span>
+    <span class="k">Cast</span> <span class="n">value</span> <span class="k">to</span> <span class="n">appropriate</span> <span class="k">type</span>
+    <span class="n">Reindexing</span> <span class="n">dataframe</span> <span class="k">by</span> <span class="n">read_ids</span>
+        <span class="mi">3</span><span class="p">,</span><span class="mi">999</span> <span class="k">Final</span> <span class="k">valid</span> <span class="k">reads</span>
+<span class="n">Loading</span> <span class="n">plotting</span> <span class="n">interface</span>
+    <span class="k">Found</span> <span class="mi">3</span><span class="p">,</span><span class="mi">999</span> <span class="n">total</span> <span class="k">reads</span>
+    <span class="k">Found</span> <span class="mi">3</span><span class="p">,</span><span class="mi">327</span> <span class="n">pass</span> <span class="k">reads</span> <span class="p">(</span><span class="n">qual</span> <span class="o">&gt;=</span> <span class="mi">7</span><span class="p">.</span><span class="mi">0</span> <span class="k">and</span> <span class="k">length</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+
+
+    <span class="n">Barcode</span><span class="p">:</span> <span class="k">True</span>
+    <span class="n">Alignment</span><span class="p">:</span> <span class="k">False</span>
+    <span class="n">Promethion</span><span class="p">:</span> <span class="k">False</span>
+    <span class="k">All</span> <span class="k">reads</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span><span class="mi">999</span>
+    <span class="k">All</span> <span class="n">bases</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span><span class="mi">690</span><span class="p">,</span><span class="mi">011</span>
+    <span class="k">All</span> <span class="n">median</span> <span class="k">read</span> <span class="k">length</span><span class="p">:</span> <span class="mi">914</span><span class="p">.</span><span class="mi">0</span>
+    <span class="n">Pass</span> <span class="k">reads</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span><span class="mi">327</span>
+    <span class="n">Pass</span> <span class="n">bases</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span><span class="mi">007</span><span class="p">,</span><span class="mi">561</span>
+    <span class="n">Pass</span> <span class="n">median</span> <span class="k">read</span> <span class="k">length</span><span class="p">:</span> <span class="mi">961</span><span class="p">.</span><span class="mi">0</span>
+</pre></div>
+
+
+<h3 id="initialisation-with-bam-files">Initialisation with Bam files</h3>
+<div class="codehilite"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">pycoQC</span><span class="p">(</span>
+    <span class="n">summary_file</span><span class="o">=</span><span class="s2">&quot;./large_data/sample_1_sequencing_summary.txt&quot;</span><span class="p">,</span>
+    <span class="n">bam_file</span><span class="o">=</span><span class="s2">&quot;./large_data/sample_1.bam&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="n">Checking</span> <span class="n">arguments</span> <span class="k">values</span>
+<span class="k">Check</span> <span class="k">input</span> <span class="k">data</span> <span class="n">files</span>
+<span class="n">Parse</span> <span class="k">data</span> <span class="n">files</span>
+<span class="n">Merge</span> <span class="k">data</span>
+<span class="n">Cleaning</span> <span class="k">data</span>
+    <span class="n">Discarding</span> <span class="n">lines</span> <span class="n">containing</span> <span class="n">NA</span> <span class="k">values</span>
+        <span class="mi">0</span> <span class="k">reads</span> <span class="n">discarded</span>
+    <span class="n">Filtering</span> <span class="k">out</span> <span class="n">zero</span> <span class="k">length</span> <span class="k">reads</span>
+        <span class="mi">0</span> <span class="k">reads</span> <span class="n">discarded</span>
+    <span class="n">Sorting</span> <span class="n">run</span> <span class="n">IDs</span> <span class="k">by</span> <span class="n">decreasing</span> <span class="n">throughput</span>
+        <span class="n">Run</span><span class="o">-</span><span class="n">id</span> <span class="k">order</span> <span class="p">[</span><span class="s1">&#39;ede7e01619570f500a43fd5d33ff8ab25d1b589b&#39;</span><span class="p">]</span>
+    <span class="n">Reordering</span> <span class="n">runids</span>
+        <span class="n">Processing</span> <span class="k">reads</span> <span class="k">with</span> <span class="n">Run_ID</span> <span class="n">ede7e01619570f500a43fd5d33ff8ab25d1b589b</span> <span class="o">/</span> <span class="n">time</span> <span class="k">offset</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="k">Cast</span> <span class="n">value</span> <span class="k">to</span> <span class="n">appropriate</span> <span class="k">type</span>
+    <span class="n">Reindexing</span> <span class="n">dataframe</span> <span class="k">by</span> <span class="n">read_ids</span>
+        <span class="mi">12</span><span class="p">,</span><span class="mi">000</span> <span class="k">Final</span> <span class="k">valid</span> <span class="k">reads</span>
+<span class="n">Loading</span> <span class="n">plotting</span> <span class="n">interface</span>
+    <span class="k">Found</span> <span class="mi">12</span><span class="p">,</span><span class="mi">000</span> <span class="n">total</span> <span class="k">reads</span>
+    <span class="k">Found</span> <span class="mi">10</span><span class="p">,</span><span class="mi">021</span> <span class="n">pass</span> <span class="k">reads</span> <span class="p">(</span><span class="n">qual</span> <span class="o">&gt;=</span> <span class="mi">7</span><span class="p">.</span><span class="mi">0</span> <span class="k">and</span> <span class="k">length</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+
+
+    <span class="n">Barcode</span><span class="p">:</span> <span class="k">False</span>
+    <span class="n">Alignment</span><span class="p">:</span> <span class="k">True</span>
+    <span class="n">Promethion</span><span class="p">:</span> <span class="k">False</span>
+    <span class="k">All</span> <span class="k">reads</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span><span class="mi">000</span>
+    <span class="k">All</span> <span class="n">bases</span><span class="p">:</span> <span class="mi">33</span><span class="p">,</span><span class="mi">468</span><span class="p">,</span><span class="mi">903</span>
+    <span class="k">All</span> <span class="n">median</span> <span class="k">read</span> <span class="k">length</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span><span class="mi">011</span><span class="p">.</span><span class="mi">0</span>
+    <span class="n">Pass</span> <span class="k">reads</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span><span class="mi">021</span>
+    <span class="n">Pass</span> <span class="n">bases</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span><span class="mi">288</span><span class="p">,</span><span class="mi">575</span>
+    <span class="n">Pass</span> <span class="n">median</span> <span class="k">read</span> <span class="k">length</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span><span class="mi">103</span><span class="p">.</span><span class="mi">0</span>
+</pre></div>
+
+
+<h2 id="generating-inline-plots-and-tables">Generating inline plots and tables</h2>
+<h3 id="interaction-with-plotly-library">Interaction with Plotly library</h3>
+<p>Most of <code class="codehilite"><span class="err">pycoQC</span></code> methods return a <code class="codehilite"><span class="err">Figure</span></code> object generated with <a href="https://plot.ly/python/">plotly for Python</a>. The <code class="codehilite"><span class="err">Figure</span></code> object can be subsequently used for:</p>
+<ul>
+<li>Further customization using the numerous methods attached to the Figure object </li>
+<li>Inline plotting in Jupyter Notebook using <code class="codehilite"><span class="err">iplot</span></code> (either from <code class="codehilite"><span class="err">plotly.plotly</span></code> or <code class="codehilite"><span class="err">plotly.offline</span></code>)</li>
+<li>Generating a separate HTML file with <code class="codehilite"><span class="err">plot</span></code> (either from <code class="codehilite"><span class="err">plotly.plotly</span></code> or <code class="codehilite"><span class="err">plotly.offline</span></code>)</li>
+<li>Exporting as a static image (<a href="https://plot.ly/python/static-image-export/">https://plot.ly/python/static-image-export/</a>), pdf (<a href="https://plot.ly/python/pdf-reports/">https://plot.ly/python/pdf-reports/</a>) or various text formats.</li>
+</ul>
+<p>Users can also customize the figures online in a user friendly environment by clicking on "Edit in Chart Studio" in the upper right corner of each figures.</p>
+<p><img alt="Edit in Chart Studio" src="https://a-slide.github.io/pycoQC/pictures/edit_in_chart_studio.png" /></p>
+<p>Similarly static pictures can be exported using the "Download plot as a png" button.</p>
+<p><img alt="Edit in Chart Studio" src="https://a-slide.github.io/pycoQC/pictures/Download_plot_as_png.png" /></p>
+<h3 id="common-arguments">Common arguments</h3>
+<p>All the methods have the arguments <code class="codehilite"><span class="err">width</span></code> and <code class="codehilite"><span class="err">height</span></code> that can be used to customize the plotting area. In general we do not recommend modifing these values as they might disrupt the plot layout.</p>
+<p>Most of the methods also have the argument <code class="codehilite"><span class="err">sample</span></code>. By default pycoQC downsample the number of reads to 100,000 before plotting. This drastically reduces the processing time for large dataset and has a very limited impact on the plot aspect. The sampling is random but deterministic, meaning that you should always obtain the same results for the same dataset. The value can be changed to increase or decrease the number of reads. Alternatively, one can deactivate the behavior by specifying <code class="codehilite"><span class="err">sample=False</span></code>.</p>
+<h3 id="summary_stats_dict">summary_stats_dict</h3>
+<p><code class="codehilite"><span class="err">summary_stats_dict</span></code> is the only <code class="codehilite"><span class="err">pycoQC</span></code> public method that does not return a plotly <code class="codehilite"><span class="err">Figure</span></code> object. Instead it returns a dictionary containing information about the run options, read counts during the initialisation step and basic statistics for both <code class="codehilite"><span class="err">pass</span></code> and <code class="codehilite"><span class="err">all</span></code> reads.  </p>
+<p>On top of the overall results, users can also get data split by run_id or barcode.</p>
+<p>The dictionary can be easily save in a JSON, YAML or pickle file.</p>
+<div class="codehilite"><pre><span></span><span class="n">jhelp</span> <span class="p">(</span><span class="n">pycoQC_plot</span><span class="o">.</span><span class="n">summary_stats_dict</span><span class="p">)</span>
+</pre></div>
+
+<p><strong>summary_stats_dict</strong> ()</p>
+<p>Return a dictionnary containing exhaustive information about the run.</p>
+<hr />
+<div class="codehilite"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">pycoQC</span><span class="p">(</span><span class="s2">&quot;./data/Albacore-1.7.0_basecall-1D-DNA_sequencing_summary.txt.gz&quot;</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">summary_stats_dict</span><span class="p">())</span>
+</pre></div>
+
+<h3 id="summary-table-methods">summary table methods</h3>
+<p>pycoQC has 3 summary methods to generate simple summary tables with a clickable button to switch from "all reads" to "pass reads" only.
+* <code class="codehilite"><span class="err">run_summary</span></code> : General information about the run
+* <code class="codehilite"><span class="err">basecall_summary</span></code> : Basecalling related information
+* <code class="codehilite"><span class="err">alignment_summary</span></code> : Alignment related information (when a bam file is provided</p>
+<h4 id="run_summary">run_summary</h4>
+<div class="codehilite"><pre><span></span><span class="n">jhelp</span><span class="p">(</span><span class="n">pycoQC_plot</span><span class="o">.</span><span class="n">run_summary</span><span class="p">)</span>
+</pre></div>
+
+<p><strong>run_summary</strong> (width, height, plot_title)</p>
+<p>Plot an interactive overall summary table</p>
+<hr />
+<ul>
+<li><strong>width</strong> (default: None) [int]</li>
+</ul>
+<p>With of the plotting area in pixel</p>
+<ul>
+<li><strong>height</strong> (default: 300) [int]</li>
+</ul>
+<p>height of the plotting area in pixel</p>
+<ul>
+<li><strong>plot_title</strong> (default: General run summary) [str]</li>
+</ul>
+<p>Title to display on top of the plot</p>
+<div class="codehilite"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">pycoQC</span><span class="p">(</span><span class="n">summary_file</span><span class="o">=</span><span class="s2">&quot;./data/Guppy-2.2.4-basecall-1D-DNA_sequencing_summary+barcode.txt.gz&quot;</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">run_summary</span><span class="p">()</span>
+</pre></div>
+
+<h4 id="basecall_summary">basecall_summary</h4>
+<div class="codehilite"><pre><span></span><span class="n">jhelp</span><span class="p">(</span><span class="n">pycoQC_plot</span><span class="o">.</span><span class="n">basecall_summary</span><span class="p">)</span>
+</pre></div>
+
+<p><strong>basecall_summary</strong> (width, height, plot_title)</p>
+<p>Plot an interactive basecall summary table</p>
+<hr />
+<ul>
+<li><strong>width</strong> (default: None) [int]</li>
+</ul>
+<p>With of the plotting area in pixel</p>
+<ul>
+<li><strong>height</strong> (default: 300) [int]</li>
+</ul>
+<p>height of the plotting area in pixel</p>
+<ul>
+<li><strong>plot_title</strong> (default: Basecall summary) [str]</li>
+</ul>
+<p>Title to display on top of the plot</p>
+<div class="codehilite"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">pycoQC</span><span class="p">(</span><span class="n">summary_file</span><span class="o">=</span><span class="s2">&quot;./large_data/sample_2_sequencing_summary.txt&quot;</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">basecall_summary</span><span class="p">()</span>
+</pre></div>
+
+<h4 id="alignment_summary">alignment_summary</h4>
+<div class="codehilite"><pre><span></span><span class="n">jhelp</span><span class="p">(</span><span class="n">pycoQC_plot</span><span class="o">.</span><span class="n">alignment_summary</span><span class="p">)</span>
+</pre></div>
+
+<p><strong>alignment_summary</strong> (width, height, plot_title)</p>
+<p>Plot an interactive alignment summary table</p>
+<hr />
+<ul>
+<li><strong>width</strong> (default: None) [int]</li>
+</ul>
+<p>With of the plotting area in pixel</p>
+<ul>
+<li><strong>height</strong> (default: 300) [int]</li>
+</ul>
+<p>height of the plotting area in pixel</p>
+<ul>
+<li><strong>plot_title</strong> (default: Alignment summary) [str]</li>
+</ul>
+<p>Title to display on top of the plot</p>
+<div class="codehilite"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">pycoQC</span><span class="p">(</span><span class="n">summary_file</span><span class="o">=</span><span class="s2">&quot;./large_data/sample_2_sequencing_summary.txt&quot;</span><span class="p">,</span> <span class="n">bam_file</span><span class="o">=</span><span class="s2">&quot;./large_data/sample_2.bam&quot;</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">alignment_summary</span><span class="p">())</span>
+</pre></div>
+
+<h3 id="read-length-and-mean-quality-distribution">Read Length and Mean quality distribution</h3>
+<p>pycoQC has 3 methods to visualize the distribution of mean quality scores and of estimated read length:
+* <code class="codehilite"><span class="err">read_len_1D</span></code>: An density plot of estimated read length in logarithmic scale
+* <code class="codehilite"><span class="err">read_qual_1D</span></code>: An density plot of mean quality scores
+* <code class="codehilite"><span class="err">read_len_read_qual_2D</span></code>: A density contour plot of estimated read length vs mean quality scores in semilog scale</p>
+<p>Although we recommend to stick to default values, all 3 methods allow users to customize the plots.
+* The numbers of bin to divide the reads quality and/or length space in can be specified with <code class="codehilite"><span class="err">nbins</span></code> for the 1D plots and <code class="codehilite"><span class="err">x_nbins</span></code> / <code class="codehilite"><span class="err">y_nbins</span></code> for the 2D plot
+* The intensity of line smoothing (using a gaussian kernel filter) can be specified with <code class="codehilite"><span class="err">smooth_sigma</span></code>.
+* Additional cosmetic customization are available: <code class="codehilite"><span class="err">color</span></code>/<code class="codehilite"><span class="err">colorscale</span></code></p>
+<div class="codehilite"><pre><span></span><span class="n">jhelp</span><span class="p">(</span><span class="n">pycoQC_plot</span><span class="o">.</span><span class="n">read_len_1D</span><span class="p">)</span>
+</pre></div>
+
+<p><strong>read_len_1D</strong> (color, nbins, smooth_sigma, width, height, plot_title)</p>
+<p>Plot a distribution of read length (log scale)</p>
+<hr />
+<ul>
+<li><strong>color</strong> (default: lightsteelblue) [str]</li>
+</ul>
+<p>Color of the area (hex, rgb, rgba, hsl, hsv or any CSS named colors <a href="https://www.w3.org/TR/css-color-3/#svg-color">https://www.w3.org/TR/css-color-3/#svg-color</a></p>
+<ul>
+<li><strong>nbins</strong> (default: 200) [int]</li>
+</ul>
+<p>Number of bins to devide the x axis in</p>
+<ul>
+<li><strong>smooth_sigma</strong> (default: 2) [float]</li>
+</ul>
+<p>standard deviation for Gaussian kernel</p>
+<ul>
+<li><strong>width</strong> (default: None) [int]</li>
+</ul>
+<p>With of the plotting area in pixel</p>
+<ul>
+<li><strong>height</strong> (default: 500) [int]</li>
+</ul>
+<p>height of the plotting area in pixel</p>
+<ul>
+<li><strong>plot_title</strong> (default: Basecalled reads length) [str]</li>
+</ul>
+<p>Title to display on top of the plot</p>
+<div class="codehilite"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">pycoQC</span><span class="p">(</span><span class="s2">&quot;./data/Guppy-2.1.3_basecall-1D-DNA_sequencing_summary.txt.gz&quot;</span><span class="p">,</span> <span class="n">min_pass_len</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">min_pass_qual</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">read_len_1D</span><span class="p">()</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="n">jhelp</span><span class="p">(</span><span class="n">pycoQC_plot</span><span class="o">.</span><span class="n">read_qual_1D</span><span class="p">)</span>
+</pre></div>
+
+<p><strong>read_qual_1D</strong> (color, nbins, smooth_sigma, width, height, plot_title)</p>
+<p>Plot a distribution of quality scores</p>
+<hr />
+<ul>
+<li><strong>color</strong> (default: salmon) [str]</li>
+</ul>
+<p>Color of the area (hex, rgb, rgba, hsl, hsv or any CSS named colors <a href="https://www.w3.org/TR/css-color-3/#svg-color">https://www.w3.org/TR/css-color-3/#svg-color</a></p>
+<ul>
+<li><strong>nbins</strong> (default: 200) [int]</li>
+</ul>
+<p>Number of bins to devide the x axis in</p>
+<ul>
+<li><strong>smooth_sigma</strong> (default: 2) [float]</li>
+</ul>
+<p>standard deviation for Gaussian kernel</p>
+<ul>
+<li><strong>width</strong> (default: None) [int]</li>
+</ul>
+<p>With of the plotting area in pixel</p>
+<ul>
+<li><strong>height</strong> (default: 500) [int]</li>
+</ul>
+<p>height of the plotting area in pixel</p>
+<ul>
+<li><strong>plot_title</strong> (default: Basecalled reads PHRED quality) [str]</li>
+</ul>
+<p>Title to display on top of the plot</p>
+<div class="codehilite"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">pycoQC</span><span class="p">(</span><span class="s2">&quot;./data/Albacore-2.1.10_basecall-1D-RNA_sequencing_summary.txt.gz&quot;</span><span class="p">,</span> <span class="n">min_pass_len</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">min_pass_qual</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">read_qual_1D</span><span class="p">()</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="n">jhelp</span><span class="p">(</span><span class="n">pycoQC_plot</span><span class="o">.</span><span class="n">read_len_read_qual_2D</span><span class="p">)</span>
+</pre></div>
+
+<p><strong>read_len_read_qual_2D</strong> (colorscale, x_nbins, y_nbins, smooth_sigma, width, height, plot_title)</p>
+<p>Plot a 2D distribution of quality scores vs length of the reads</p>
+<hr />
+<ul>
+<li><strong>colorscale</strong> (default: [[0.0, 'rgba(255,255,255,0)'], [0.1, 'rgba(255,150,0,0)'], [0.25, 'rgb(255,100,0)'], [0.5, 'rgb(200,0,0)'], [0.75, 'rgb(120,0,0)'], [1.0, 'rgb(70,0,0)']])</li>
+</ul>
+<p>a valid plotly color scale <a href="https://plot.ly/python/colorscales/">https://plot.ly/python/colorscales/</a> (Not recommanded to change)</p>
+<ul>
+<li><strong>x_nbins</strong> (default: 200) [int]</li>
+</ul>
+<p>Number of bins to divide the read length values in (x axis)</p>
+<ul>
+<li><strong>y_nbins</strong> (default: 100) [int]</li>
+</ul>
+<p>Number of bins to divide the read quality values in (y axis)</p>
+<ul>
+<li><strong>smooth_sigma</strong> (default: 2) [float]</li>
+</ul>
+<p>standard deviation for 2D Gaussian kernel</p>
+<ul>
+<li><strong>width</strong> (default: None) [int]</li>
+</ul>
+<p>With of the plotting area in pixel</p>
+<ul>
+<li><strong>height</strong> (default: 600) [int]</li>
+</ul>
+<p>height of the plotting area in pixel</p>
+<ul>
+<li><strong>plot_title</strong> (default: Basecalled reads length vs reads PHRED quality) [str]</li>
+</ul>
+<p>Title to display on top of the plot</p>
+<div class="codehilite"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">pycoQC</span><span class="p">(</span><span class="s2">&quot;./data/*Albacore*DNA*&quot;</span><span class="p">,</span> <span class="n">min_pass_len</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">min_pass_qual</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">read_len_read_qual_2D</span> <span class="p">()</span>
+</pre></div>
+
+<h3 id="sequencing-output-quality-and-length-over-experiment-time">Sequencing output, quality and length over experiment time</h3>
+<p>pycoQC can generate plot showing the evolution of the sequencing output (<code class="codehilite"><span class="err">output_over_time</span></code>), the mean read quality (<code class="codehilite"><span class="err">qual_over_time</span></code>) and the read length (<code class="codehilite"><span class="err">len_over_time</span></code>) over the course of the sequencing run.</p>
+<p>Please be aware that if there are multiple run IDs in the source file(s), pycoQC reorder the run IDS by decreasing throughput/second as explained in <strong>Initialisation</strong>. This means that the over_time plots could be wrong, particularly when mixing several runs together.</p>
+<p>For both functions the argument <code class="codehilite"><span class="err">smooth_sigma</span></code> can be used to modulate the smoothing factor of the gaussian filter, if you are not satisfied with the default result.</p>
+<p>The colors of both plots can be fully customised:
+* <code class="codehilite"><span class="err">cumulative_color</span></code> and <code class="codehilite"><span class="err">interval_color</span></code> for <code class="codehilite"><span class="err">output_over_time</span></code>
+* <code class="codehilite"><span class="err">median_color</span></code>, <code class="codehilite"><span class="err">quartile_color</span></code> and <code class="codehilite"><span class="err">extreme_color</span></code> for <code class="codehilite"><span class="err">quality_over_time</span></code></p>
+<div class="codehilite"><pre><span></span><span class="n">jhelp</span><span class="p">(</span><span class="n">pycoQC_plot</span><span class="o">.</span><span class="n">output_over_time</span><span class="p">)</span>
+</pre></div>
+
+<p><strong>output_over_time</strong> (cumulative_color, interval_color, time_bins, width, height, plot_title)</p>
+<p>Plot a yield over time</p>
+<hr />
+<ul>
+<li><strong>cumulative_color</strong> (default: rgb(204,226,255)) [str]</li>
+</ul>
+<p>Color of cumulative yield area (hex, rgb, rgba, hsl, hsv or any CSS named colors <a href="https://www.w3.org/TR/css-color-3/#svg-color">https://www.w3.org/TR/css-color-3/#svg-color</a></p>
+<ul>
+<li><strong>interval_color</strong> (default: rgb(102,168,255)) [str]</li>
+</ul>
+<p>Color of interval yield line (hex, rgb, rgba, hsl, hsv or any CSS named colors <a href="https://www.w3.org/TR/css-color-3/#svg-color">https://www.w3.org/TR/css-color-3/#svg-color</a></p>
+<ul>
+<li><strong>time_bins</strong> (default: 500) [int]</li>
+</ul>
+<p>Number of bins to divide the time values in (x axis)</p>
+<ul>
+<li><strong>width</strong> (default: None) [int]</li>
+</ul>
+<p>With of the plotting area in pixel</p>
+<ul>
+<li><strong>height</strong> (default: 500) [int]</li>
+</ul>
+<p>height of the plotting area in pixel</p>
+<ul>
+<li><strong>plot_title</strong> (default: Output over experiment time) [str]</li>
+</ul>
+<p>Title to display on top of the plot</p>
+<div class="codehilite"><pre><span></span><span class="n">p</span>  <span class="o">=</span> <span class="n">pycoQC</span> <span class="p">(</span><span class="s2">&quot;./data/Albacore-1.2.1_basecall-1D-DNA_sequencing_summary.txt.gz&quot;</span><span class="p">,</span> <span class="n">min_pass_len</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">min_pass_qual</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">output_over_time</span> <span class="p">()</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="n">jhelp</span> <span class="p">(</span><span class="n">pycoQC_plot</span><span class="o">.</span><span class="n">read_qual_over_time</span><span class="p">)</span>
+</pre></div>
+
+<p><strong>read_qual_over_time</strong> (median_color, quartile_color, extreme_color, smooth_sigma, time_bins, width, height, plot_title)</p>
+<p>Plot a mean quality over time</p>
+<hr />
+<ul>
+<li><strong>median_color</strong> (default: rgb(250,128,114)) [str]</li>
+</ul>
+<p>Color of median line color (hex, rgb, rgba, hsl, hsv or any CSS named colors <a href="https://www.w3.org/TR/css-color-3/#svg-color">https://www.w3.org/TR/css-color-3/#svg-color</a></p>
+<ul>
+<li><strong>quartile_color</strong> (default: rgb(250,170,160)) [str]</li>
+</ul>
+<p>Color of inter quartile area and lines (hex, rgb, rgba, hsl, hsv or any CSS named colors <a href="https://www.w3.org/TR/css-color-3/#svg-color">https://www.w3.org/TR/css-color-3/#svg-color</a></p>
+<ul>
+<li><strong>extreme_color</strong> (default: rgba(250,170,160,0.5)) [str]</li>
+</ul>
+<p>Color of inter extreme area and lines (hex, rgb, rgba, hsl, hsv or any CSS named colors <a href="https://www.w3.org/TR/css-color-3/#svg-col">https://www.w3.org/TR/css-color-3/#svg-col</a></p>
+<ul>
+<li><strong>smooth_sigma</strong> (default: 1) [float]</li>
+</ul>
+<p>sigma parameter for the Gaussian filter line smoothing</p>
+<ul>
+<li><strong>time_bins</strong> (default: 500) [int]</li>
+</ul>
+<p>Number of bins to divide the time values in (x axis)</p>
+<ul>
+<li><strong>width</strong> (default: None) [int]</li>
+</ul>
+<p>With of the plotting area in pixel</p>
+<ul>
+<li><strong>height</strong> (default: 500) [int]</li>
+</ul>
+<p>height of the plotting area in pixel</p>
+<ul>
+<li><strong>plot_title</strong> (default: Read quality over experiment time) [str]</li>
+</ul>
+<p>Title to display on top of the plot</p>
+<div class="codehilite"><pre><span></span><span class="n">p</span>  <span class="o">=</span> <span class="n">pycoQC</span> <span class="p">(</span><span class="s2">&quot;./data/Albacore-2.1.10_basecall-1D-DNA_sequencing_summary.txt.gz&quot;</span><span class="p">,</span> <span class="n">min_pass_len</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">min_pass_qual</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">read_qual_over_time</span> <span class="p">()</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="n">jhelp</span> <span class="p">(</span><span class="n">pycoQC_plot</span><span class="o">.</span><span class="n">read_len_over_time</span><span class="p">)</span>
+</pre></div>
+
+<p><strong>read_len_over_time</strong> (median_color, quartile_color, extreme_color, smooth_sigma, time_bins, width, height, plot_title)</p>
+<p>Plot a read length over time</p>
+<hr />
+<ul>
+<li><strong>median_color</strong> (default: rgb(102,168,255)) [str]</li>
+</ul>
+<p>Color of median line color (hex, rgb, rgba, hsl, hsv or any CSS named colors <a href="https://www.w3.org/TR/css-color-3/#svg-color">https://www.w3.org/TR/css-color-3/#svg-color</a></p>
+<ul>
+<li><strong>quartile_color</strong> (default: rgb(153,197,255)) [str]</li>
+</ul>
+<p>Color of inter quartile area and lines (hex, rgb, rgba, hsl, hsv or any CSS named colors <a href="https://www.w3.org/TR/css-color-3/#svg-color">https://www.w3.org/TR/css-color-3/#svg-color</a></p>
+<ul>
+<li><strong>extreme_color</strong> (default: rgba(153,197,255,0.5)) [str]</li>
+</ul>
+<p>Color of inter extreme area and lines (hex, rgb, rgba, hsl, hsv or any CSS named colors <a href="https://www.w3.org/TR/css-color-3/#svg-col">https://www.w3.org/TR/css-color-3/#svg-col</a></p>
+<ul>
+<li><strong>smooth_sigma</strong> (default: 1) [float]</li>
+</ul>
+<p>sigma parameter for the Gaussian filter line smoothing</p>
+<ul>
+<li><strong>time_bins</strong> (default: 500) [int]</li>
+</ul>
+<p>Number of bins to divide the time values in (x axis)</p>
+<ul>
+<li><strong>width</strong> (default: None) [int]</li>
+</ul>
+<p>With of the plotting area in pixel</p>
+<ul>
+<li><strong>height</strong> (default: 500) [int]</li>
+</ul>
+<p>height of the plotting area in pixel</p>
+<ul>
+<li><strong>plot_title</strong> (default: Read length over experiment time) [str]</li>
+</ul>
+<p>Title to display on top of the plot</p>
+<div class="codehilite"><pre><span></span><span class="n">p</span>  <span class="o">=</span> <span class="n">pycoQC</span> <span class="p">(</span><span class="s2">&quot;./data/Albacore-2.1.10_basecall-1D-DNA_sequencing_summary.txt.gz&quot;</span><span class="p">,</span> <span class="n">min_pass_len</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">min_pass_qual</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">read_len_over_time</span> <span class="p">()</span>
+</pre></div>
+
+<h3 id="barcode-distribution">Barcode distribution</h3>
+<p>When barcoding information is available, it is possible to generate a pie chart of the barcode count distribution. If no barcode information is available pycoQC throws an error.</p>
+<p>It is not rare to have non-relevant barcodes detected at very low level. By default any barcode below 0.1% of the reads is excludes from the plot, but this can be changed with <code class="codehilite"><span class="err">min_percent_barcode</span></code>.</p>
+<p>Similar to the previously described methods colors are customisable with <code class="codehilite"><span class="err">colors</span></code>. </p>
+<div class="codehilite"><pre><span></span><span class="n">jhelp</span><span class="p">(</span><span class="n">pycoQC_plot</span><span class="o">.</span><span class="n">barcode_counts</span><span class="p">)</span>
+</pre></div>
+
+<p><strong>barcode_counts</strong> (colors, width, height, plot_title)</p>
+<p>Plot a mean quality over time</p>
+<hr />
+<ul>
+<li><strong>colors</strong> (default: ['#f8bc9c', '#f6e9a1', '#f5f8f2', '#92d9f5', '#4f97ba']) [list]</li>
+</ul>
+<p>List of colors (hex, rgb, rgba, hsl, hsv or any CSS named colors <a href="https://www.w3.org/TR/css-color-3/#svg-color">https://www.w3.org/TR/css-color-3/#svg-color</a></p>
+<ul>
+<li><strong>width</strong> (default: None) [int]</li>
+</ul>
+<p>With of the plotting area in pixel</p>
+<ul>
+<li><strong>height</strong> (default: 500) [int]</li>
+</ul>
+<p>height of the plotting area in pixel</p>
+<ul>
+<li><strong>plot_title</strong> (default: Percentage of reads per barcode) [str]</li>
+</ul>
+<p>Title to display on top of the plot</p>
+<h4 id="albacore-output-example">Albacore output example</h4>
+<div class="codehilite"><pre><span></span><span class="n">p</span>  <span class="o">=</span> <span class="n">pycoQC</span> <span class="p">(</span><span class="s2">&quot;./data/Albacore-1.7.0_basecall-1D-DNA_sequencing_summary.txt.gz&quot;</span><span class="p">,</span> <span class="n">min_pass_len</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">min_pass_qual</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">barcode_counts</span> <span class="p">()</span>
+</pre></div>
+
+<h4 id="guppy-21-output-example">Guppy 2.1 output example</h4>
+<div class="codehilite"><pre><span></span><span class="n">p</span>  <span class="o">=</span> <span class="n">pycoQC</span> <span class="p">(</span>
+    <span class="n">summary_file</span><span class="o">=</span><span class="s2">&quot;./data/Guppy-2.1.3_basecall-1D-DNA_sequencing_summary.txt.gz&quot;</span><span class="p">,</span>
+    <span class="n">barcode_file</span><span class="o">=</span><span class="s2">&quot;./data/Guppy-2.1.3_basecall-1D_DNA_barcoding_summary.txt.gz&quot;</span><span class="p">,</span>
+    <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">barcode_counts</span> <span class="p">()</span>
+</pre></div>
+
+<h4 id="deepbinner-output-example">Deepbinner output example</h4>
+<div class="codehilite"><pre><span></span><span class="n">p</span>  <span class="o">=</span> <span class="n">pycoQC</span> <span class="p">(</span>
+    <span class="n">summary_file</span><span class="o">=</span><span class="s2">&quot;./data/Guppy-basecall-1D-DNA_sequencing_summary.txt.gz&quot;</span><span class="p">,</span>
+    <span class="n">barcode_file</span><span class="o">=</span><span class="s2">&quot;./data/Guppy-basecall-1D-DNA_deepbinner_barcoding_summary.txt.gz&quot;</span><span class="p">,</span>
+    <span class="n">min_pass_len</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> 
+    <span class="n">min_pass_qual</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+    <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">barcode_counts</span> <span class="p">()</span>
+</pre></div>
+
+<h3 id="channels-activity-over-time">Channels activity over time</h3>
+<p>Although the flowcell layout could be visually attractive (see <a href="https://github.com/mattloose/flowcellvis">https://github.com/mattloose/flowcellvis</a>) this is not very informative on how the channels generate data during the run.</p>
+<p>The <code class="codehilite"><span class="err">channels_activity</span></code> method generates a heatmap style plot showing the output over time per channel.</p>
+<p>The number of channels can be changed to match Minion flowcells (512 default) or Promethion flowcells (3000).</p>
+<p>The argument <code class="codehilite"><span class="err">smooth_sigma</span></code> can be used to modulate the smoothing factor of the gaussian smoothing filter</p>
+<p>Colors can be changed with <code class="codehilite"><span class="err">colorscale</span></code></p>
+<div class="codehilite"><pre><span></span><span class="n">jhelp</span><span class="p">(</span><span class="n">pycoQC_plot</span><span class="o">.</span><span class="n">channels_activity</span><span class="p">)</span>
+</pre></div>
+
+<p><strong>channels_activity</strong> (colorscale, smooth_sigma, time_bins, width, height, plot_title)</p>
+<p>Plot a yield over time</p>
+<hr />
+<ul>
+<li><strong>colorscale</strong> (default: [[0.0, 'rgba(255,255,255,0)'], [0.01, 'rgb(255,255,200)'], [0.25, 'rgb(255,200,0)'], [0.5, 'rgb(200,0,0)'], [0.75, 'rgb(120,0,0)'], [1.0, 'rgb(0,0,0)']]) [list]</li>
+</ul>
+<p>a valid plotly color scale <a href="https://plot.ly/python/colorscales/">https://plot.ly/python/colorscales/</a> (Not recommanded to change)</p>
+<ul>
+<li><strong>smooth_sigma</strong> (default: 1) [float]</li>
+</ul>
+<p>sigma parameter for the Gaussian filter line smoothing</p>
+<ul>
+<li><strong>time_bins</strong> (default: 100) [int]</li>
+</ul>
+<p>Number of bins to divide the time values in (y axis)</p>
+<ul>
+<li><strong>width</strong> (default: None) [int]</li>
+</ul>
+<p>With of the plotting area in pixel</p>
+<ul>
+<li><strong>height</strong> (default: 600) [int]</li>
+</ul>
+<p>height of the plotting area in pixel</p>
+<ul>
+<li><strong>plot_title</strong> (default: Output per channel over experiment time) [str]</li>
+</ul>
+<p>Title to display on top of the plot</p>
+<div class="codehilite"><pre><span></span><span class="n">p</span>  <span class="o">=</span> <span class="n">pycoQC</span> <span class="p">(</span><span class="s2">&quot;./data/Albacore-2.1.10_basecall-1D-DNA_sequencing_summary.txt.gz&quot;</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">channels_activity</span> <span class="p">()</span>
+</pre></div>
+
+<h3 id="alignment-length-and-score-distribution">Alignment length and score distribution</h3>
+<p>From version 2.5+ PycoQC can also generate ditribution plots for alignments length and score and if a bam file corresponding to the summary file is provided.
+pycoQC has 5 methods related to alignment score and length:  </p>
+<ul>
+<li><code class="codehilite"><span class="err">align_len_1D</span></code>: A density plot of (primary) alignments length in logarithmic scale</li>
+<li><code class="codehilite"><span class="err">align_score_1D</span></code>: A density plot of alignments score corresponding to the invert edit distance normalised by alignment length (note that you bam file need )</li>
+<li><code class="codehilite"><span class="err">align_len_align_score_2D</span></code>: A density contour plot of alignments length vs alignments score in semi-log scale. </li>
+<li><code class="codehilite"><span class="err">read_len_align_len_2D</span></code>: A density contour plot of estimated basecalled reads length compared vs the actual alignments length in log-log scale. </li>
+<li><code class="codehilite"><span class="err">read_qual_align_score_2D</span></code>: A density contour plot of Read PHRED quality vs alignments score.</li>
+</ul>
+<p>Non-mapped reads are not represented in those plots, and attempting to use the functions without bam file will trigger an error.</p>
+<div class="codehilite"><pre><span></span><span class="n">jhelp</span><span class="p">(</span><span class="n">pycoQC_plot</span><span class="o">.</span><span class="n">align_len_1D</span><span class="p">)</span>
+</pre></div>
+
+<p><strong>align_len_1D</strong> (color, nbins, smooth_sigma, width, height, plot_title)</p>
+<p>Plot a distribution of read length (log scale)</p>
+<hr />
+<ul>
+<li><strong>color</strong> (default: mediumseagreen) [str]</li>
+</ul>
+<p>Color of the area (hex, rgb, rgba, hsl, hsv or any CSS named colors <a href="https://www.w3.org/TR/css-color-3/#svg-color">https://www.w3.org/TR/css-color-3/#svg-color</a></p>
+<ul>
+<li><strong>nbins</strong> (default: 200) [int]</li>
+</ul>
+<p>Number of bins to devide the x axis in</p>
+<ul>
+<li><strong>smooth_sigma</strong> (default: 2) [float]</li>
+</ul>
+<p>standard deviation for Gaussian kernel</p>
+<ul>
+<li><strong>width</strong> (default: None) [int]</li>
+</ul>
+<p>With of the plotting area in pixel</p>
+<ul>
+<li><strong>height</strong> (default: 500) [int]</li>
+</ul>
+<p>height of the plotting area in pixel</p>
+<ul>
+<li><strong>plot_title</strong> (default: Aligned reads length) [str]</li>
+</ul>
+<p>Title to display on top of the plot</p>
+<div class="codehilite"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">pycoQC</span><span class="p">(</span><span class="n">summary_file</span><span class="o">=</span><span class="s2">&quot;./large_data/sample_1_sequencing_summary.txt&quot;</span><span class="p">,</span> <span class="n">bam_file</span><span class="o">=</span><span class="s2">&quot;./large_data/sample_1.bam&quot;</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">min_pass_len</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">min_pass_qual</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">align_len_1D</span><span class="p">()</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="n">jhelp</span><span class="p">(</span><span class="n">pycoQC_plot</span><span class="o">.</span><span class="n">identity_freq_1D</span><span class="p">)</span>
+</pre></div>
+
+<p><strong>identity_freq_1D</strong> (color, nbins, smooth_sigma, width, height, plot_title)</p>
+<p>Plot a distribution of alignments identity</p>
+<hr />
+<ul>
+<li><strong>color</strong> (default: sandybrown) [str]</li>
+</ul>
+<p>Color of the area (hex, rgb, rgba, hsl, hsv or any CSS named colors <a href="https://www.w3.org/TR/css-color-3/#svg-color">https://www.w3.org/TR/css-color-3/#svg-color</a></p>
+<ul>
+<li><strong>nbins</strong> (default: 200) [int]</li>
+</ul>
+<p>Number of bins to devide the x axis in</p>
+<ul>
+<li><strong>smooth_sigma</strong> (default: 2) [float]</li>
+</ul>
+<p>standard deviation for Gaussian kernel</p>
+<ul>
+<li><strong>width</strong> (default: None) [int]</li>
+</ul>
+<p>With of the plotting area in pixel</p>
+<ul>
+<li><strong>height</strong> (default: 500) [int]</li>
+</ul>
+<p>height of the plotting area in pixel</p>
+<ul>
+<li><strong>plot_title</strong> (default: Aligned reads identity) [str]</li>
+</ul>
+<p>Title to display on top of the plot</p>
+<div class="codehilite"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">pycoQC</span><span class="p">(</span><span class="n">summary_file</span><span class="o">=</span><span class="s2">&quot;./large_data/sample_1_sequencing_summary.txt&quot;</span><span class="p">,</span> <span class="n">bam_file</span><span class="o">=</span><span class="s2">&quot;./large_data/sample_1.bam&quot;</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">min_pass_len</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">min_pass_qual</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">identity_freq_1D</span><span class="p">()</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="n">jhelp</span><span class="p">(</span><span class="n">pycoQC_plot</span><span class="o">.</span><span class="n">align_len_identity_freq_2D</span><span class="p">)</span>
+</pre></div>
+
+<p><strong>align_len_identity_freq_2D</strong> (colorscale, x_nbins, y_nbins, smooth_sigma, width, height, plot_title)</p>
+<p>Plot a 2D distribution of alignments length vs alignments identity</p>
+<hr />
+<ul>
+<li><strong>colorscale</strong> (default: [[0.0, 'rgba(255,255,255,0)'], [0.1, 'rgba(255,150,0,0)'], [0.25, 'rgb(255,100,0)'], [0.5, 'rgb(200,0,0)'], [0.75, 'rgb(120,0,0)'], [1.0, 'rgb(70,0,0)']])</li>
+</ul>
+<p>a valid plotly color scale <a href="https://plot.ly/python/colorscales/">https://plot.ly/python/colorscales/</a> (Not recommanded to change)</p>
+<ul>
+<li><strong>x_nbins</strong> (default: 200) [int]</li>
+</ul>
+<p>Number of bins to divide the read length values in (x axis)</p>
+<ul>
+<li><strong>y_nbins</strong> (default: 100) [int]</li>
+</ul>
+<p>Number of bins to divide the read quality values in (y axis)</p>
+<ul>
+<li><strong>smooth_sigma</strong> (default: 2) [float]</li>
+</ul>
+<p>standard deviation for 2D Gaussian kernel</p>
+<ul>
+<li><strong>width</strong> (default: None) [int]</li>
+</ul>
+<p>With of the plotting area in pixel</p>
+<ul>
+<li><strong>height</strong> (default: 600) [int]</li>
+</ul>
+<p>height of the plotting area in pixel</p>
+<ul>
+<li><strong>plot_title</strong> (default: Aligned reads length vs alignments identity) [str]</li>
+</ul>
+<p>Title to display on top of the plot</p>
+<div class="codehilite"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">pycoQC</span><span class="p">(</span><span class="n">summary_file</span><span class="o">=</span><span class="s2">&quot;./large_data/sample_1_sequencing_summary.txt&quot;</span><span class="p">,</span> <span class="n">bam_file</span><span class="o">=</span><span class="s2">&quot;./large_data/sample_1.bam&quot;</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">align_len_identity_freq_2D</span><span class="p">()</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="n">jhelp</span><span class="p">(</span><span class="n">pycoQC_plot</span><span class="o">.</span><span class="n">read_len_align_len_2D</span><span class="p">)</span>
+</pre></div>
+
+<p><strong>read_len_align_len_2D</strong> (colorscale, x_nbins, y_nbins, smooth_sigma, width, height, plot_title)</p>
+<p>Plot a 2D distribution of length of the reads vs length of the alignments</p>
+<hr />
+<ul>
+<li><strong>colorscale</strong> (default: [[0.0, 'rgba(255,255,255,0)'], [0.1, 'rgba(255,150,0,0)'], [0.25, 'rgb(255,100,0)'], [0.5, 'rgb(200,0,0)'], [0.75, 'rgb(120,0,0)'], [1.0, 'rgb(70,0,0)']])</li>
+</ul>
+<p>a valid plotly color scale <a href="https://plot.ly/python/colorscales/">https://plot.ly/python/colorscales/</a> (Not recommanded to change)</p>
+<ul>
+<li><strong>x_nbins</strong> (default: 200) [int]</li>
+</ul>
+<p>Number of bins to divide the read length values in (x axis)</p>
+<ul>
+<li><strong>y_nbins</strong> (default: 100) [int]</li>
+</ul>
+<p>Number of bins to divide the read quality values in (y axis)</p>
+<ul>
+<li><strong>smooth_sigma</strong> (default: 1) [float]</li>
+</ul>
+<p>standard deviation for 2D Gaussian kernel</p>
+<ul>
+<li><strong>width</strong> (default: None) [int]</li>
+</ul>
+<p>With of the plotting area in pixel</p>
+<ul>
+<li><strong>height</strong> (default: 600) [int]</li>
+</ul>
+<p>height of the plotting area in pixel</p>
+<ul>
+<li><strong>plot_title</strong> (default: Basecalled reads length vs alignments length) [str]</li>
+</ul>
+<p>Title to display on top of the plot</p>
+<div class="codehilite"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">pycoQC</span><span class="p">(</span><span class="n">summary_file</span><span class="o">=</span><span class="s2">&quot;./large_data/sample_1_sequencing_summary.txt&quot;</span><span class="p">,</span> <span class="n">bam_file</span><span class="o">=</span><span class="s2">&quot;./large_data/sample_1.bam&quot;</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">read_len_align_len_2D</span><span class="p">()</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="n">jhelp</span><span class="p">(</span><span class="n">pycoQC_plot</span><span class="o">.</span><span class="n">read_qual_identity_freq_2D</span><span class="p">)</span>
+</pre></div>
+
+<p><strong>read_qual_identity_freq_2D</strong> (colorscale, x_nbins, y_nbins, smooth_sigma, width, height, plot_title)</p>
+<p>Plot a 2D distribution of read quality vs alignments identity</p>
+<hr />
+<ul>
+<li><strong>colorscale</strong> (default: [[0.0, 'rgba(255,255,255,0)'], [0.1, 'rgba(255,150,0,0)'], [0.25, 'rgb(255,100,0)'], [0.5, 'rgb(200,0,0)'], [0.75, 'rgb(120,0,0)'], [1.0, 'rgb(70,0,0)']])</li>
+</ul>
+<p>a valid plotly color scale <a href="https://plot.ly/python/colorscales/">https://plot.ly/python/colorscales/</a> (Not recommanded to change)</p>
+<ul>
+<li><strong>x_nbins</strong> (default: 200) [int]</li>
+</ul>
+<p>Number of bins to divide the read length values in (x axis)</p>
+<ul>
+<li><strong>y_nbins</strong> (default: 100) [int]</li>
+</ul>
+<p>Number of bins to divide the read quality values in (y axis)</p>
+<ul>
+<li><strong>smooth_sigma</strong> (default: 1) [float]</li>
+</ul>
+<p>standard deviation for 2D Gaussian kernel</p>
+<ul>
+<li><strong>width</strong> (default: None) [int]</li>
+</ul>
+<p>With of the plotting area in pixel</p>
+<ul>
+<li><strong>height</strong> (default: 600) [int]</li>
+</ul>
+<p>height of the plotting area in pixel</p>
+<ul>
+<li><strong>plot_title</strong> (default: Reads PHRED quality vs alignments identity) [str]</li>
+</ul>
+<p>Title to display on top of the plot</p>
+<div class="codehilite"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">pycoQC</span><span class="p">(</span><span class="n">summary_file</span><span class="o">=</span><span class="s2">&quot;./large_data/sample_1_sequencing_summary.txt&quot;</span><span class="p">,</span> <span class="n">bam_file</span><span class="o">=</span><span class="s2">&quot;./large_data/sample_1.bam&quot;</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">min_pass_len</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">min_pass_qual</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">read_qual_identity_freq_2D</span><span class="p">()</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="n">jhelp</span><span class="p">(</span><span class="n">pycoQC_plot</span><span class="o">.</span><span class="n">align_len_over_time</span><span class="p">)</span>
+</pre></div>
+
+<p><strong>align_len_over_time</strong> (median_color, quartile_color, extreme_color, smooth_sigma, time_bins, width, height, plot_title)</p>
+<p>Plot a aligned reads length over time</p>
+<hr />
+<ul>
+<li><strong>median_color</strong> (default: rgb(102,168,255)) [str]</li>
+</ul>
+<p>Color of median line color (hex, rgb, rgba, hsl, hsv or any CSS named colors <a href="https://www.w3.org/TR/css-color-3/#svg-color">https://www.w3.org/TR/css-color-3/#svg-color</a></p>
+<ul>
+<li><strong>quartile_color</strong> (default: rgb(153,197,255)) [str]</li>
+</ul>
+<p>Color of inter quartile area and lines (hex, rgb, rgba, hsl, hsv or any CSS named colors <a href="https://www.w3.org/TR/css-color-3/#svg-color">https://www.w3.org/TR/css-color-3/#svg-color</a></p>
+<ul>
+<li><strong>extreme_color</strong> (default: rgba(153,197,255,0.5)) [str]</li>
+</ul>
+<p>Color of inter extreme area and lines (hex, rgb, rgba, hsl, hsv or any CSS named colors <a href="https://www.w3.org/TR/css-color-3/#svg-col">https://www.w3.org/TR/css-color-3/#svg-col</a></p>
+<ul>
+<li><strong>smooth_sigma</strong> (default: 1) [float]</li>
+</ul>
+<p>sigma parameter for the Gaussian filter line smoothing</p>
+<ul>
+<li><strong>time_bins</strong> (default: 500) [int]</li>
+</ul>
+<p>Number of bins to divide the time values in (x axis)</p>
+<ul>
+<li><strong>width</strong> (default: None) [int]</li>
+</ul>
+<p>With of the plotting area in pixel</p>
+<ul>
+<li><strong>height</strong> (default: 500) [int]</li>
+</ul>
+<p>height of the plotting area in pixel</p>
+<ul>
+<li><strong>plot_title</strong> (default: Aligned reads length over experiment time) [str]</li>
+</ul>
+<p>Title to display on top of the plot</p>
+<div class="codehilite"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">pycoQC</span><span class="p">(</span><span class="n">summary_file</span><span class="o">=</span><span class="s2">&quot;./large_data/sample_1_sequencing_summary.txt&quot;</span><span class="p">,</span> <span class="n">bam_file</span><span class="o">=</span><span class="s2">&quot;./large_data/sample_1.bam&quot;</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">min_pass_len</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">min_pass_qual</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">align_len_over_time</span><span class="p">()</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="n">jhelp</span><span class="p">(</span><span class="n">pycoQC_plot</span><span class="o">.</span><span class="n">identity_freq_over_time</span><span class="p">)</span>
+</pre></div>
+
+<p><strong>identity_freq_over_time</strong> (median_color, quartile_color, extreme_color, smooth_sigma, time_bins, width, height, plot_title)</p>
+<p>Plot the alignment identity scores over time</p>
+<hr />
+<ul>
+<li><strong>median_color</strong> (default: rgb(250,128,114)) [str]</li>
+</ul>
+<p>Color of median line color (hex, rgb, rgba, hsl, hsv or any CSS named colors <a href="https://www.w3.org/TR/css-color-3/#svg-color">https://www.w3.org/TR/css-color-3/#svg-color</a></p>
+<ul>
+<li><strong>quartile_color</strong> (default: rgb(250,170,160)) [str]</li>
+</ul>
+<p>Color of inter quartile area and lines (hex, rgb, rgba, hsl, hsv or any CSS named colors <a href="https://www.w3.org/TR/css-color-3/#svg-color">https://www.w3.org/TR/css-color-3/#svg-color</a></p>
+<ul>
+<li><strong>extreme_color</strong> (default: rgba(250,170,160,0.5)) [str]</li>
+</ul>
+<p>Color of inter extreme area and lines (hex, rgb, rgba, hsl, hsv or any CSS named colors <a href="https://www.w3.org/TR/css-color-3/#svg-col">https://www.w3.org/TR/css-color-3/#svg-col</a></p>
+<ul>
+<li><strong>smooth_sigma</strong> (default: 1) [float]</li>
+</ul>
+<p>sigma parameter for the Gaussian filter line smoothing</p>
+<ul>
+<li><strong>time_bins</strong> (default: 500) [int]</li>
+</ul>
+<p>Number of bins to divide the time values in (x axis)</p>
+<ul>
+<li><strong>width</strong> (default: None) [int]</li>
+</ul>
+<p>With of the plotting area in pixel</p>
+<ul>
+<li><strong>height</strong> (default: 500) [int]</li>
+</ul>
+<p>height of the plotting area in pixel</p>
+<ul>
+<li><strong>plot_title</strong> (default: Aligned reads identity over experiment time) [str]</li>
+</ul>
+<p>Title to display on top of the plot</p>
+<div class="codehilite"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">pycoQC</span><span class="p">(</span><span class="n">summary_file</span><span class="o">=</span><span class="s2">&quot;./large_data/sample_1_sequencing_summary.txt&quot;</span><span class="p">,</span> <span class="n">bam_file</span><span class="o">=</span><span class="s2">&quot;./large_data/sample_1.bam&quot;</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">min_pass_len</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">min_pass_qual</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">identity_freq_over_time</span><span class="p">()</span>
+</pre></div>
+
+<h3 id="alignments-summaries-and-coverage">Alignments summaries and coverage</h3>
+<p>If a bam is provided pycoQC can plot 3 alignments specific plots:
+* <code class="codehilite"><span class="err">alignment_rate</span></code>: Generates a table and a Sankey Diagram of the number of bases basecalled, mapped, matching...
+* <code class="codehilite"><span class="err">alignment_summary</span></code>: Generates a table and a Pie plot indicating primary, secondary, supplementary and unmapped reads 
+* <code class="codehilite"><span class="err">alignment_coverage</span></code>: Generates a simple coverage plot overview over all the target genome.</p>
+<div class="codehilite"><pre><span></span><span class="n">jhelp</span><span class="p">(</span><span class="n">pycoQC_plot</span><span class="o">.</span><span class="n">alignment_rate</span><span class="p">)</span>
+</pre></div>
+
+<p><strong>alignment_rate</strong> (colors, width, height, plot_title)</p>
+<p>Plot a basic alignment summary</p>
+<hr />
+<ul>
+<li><strong>colors</strong> (default: ['#fcaf94', '<a class="magiclink magiclink-github magiclink-issue" href="https://github.com/a-slide/pycoQC/issues/828282" title="GitHub Issue: a-slide/pycoQC#828282">#828282</a>', '#fc8161', '<a class="magiclink magiclink-github magiclink-issue" href="https://github.com/a-slide/pycoQC/issues/828282" title="GitHub Issue: a-slide/pycoQC#828282">#828282</a>', '#f44f39', '#d52221', '<a class="magiclink magiclink-github magiclink-issue" href="https://github.com/a-slide/pycoQC/issues/828282" title="GitHub Issue: a-slide/pycoQC#828282">#828282</a>', '<a class="magiclink magiclink-github magiclink-issue" href="https://github.com/a-slide/pycoQC/issues/828282" title="GitHub Issue: a-slide/pycoQC#828282">#828282</a>', '<a class="magiclink magiclink-github magiclink-issue" href="https://github.com/a-slide/pycoQC/issues/828282" title="GitHub Issue: a-slide/pycoQC#828282">#828282</a>', '<a class="magiclink magiclink-github magiclink-issue" href="https://github.com/a-slide/pycoQC/issues/828282" title="GitHub Issue: a-slide/pycoQC#828282">#828282</a>']) [list]</li>
+</ul>
+<p>List of colors (hex, rgb, rgba, hsl, hsv or any CSS named colors <a href="https://www.w3.org/TR/css-color-3/#svg-color">https://www.w3.org/TR/css-color-3/#svg-color</a></p>
+<ul>
+<li><strong>width</strong> (default: None) [int]</li>
+</ul>
+<p>With of the plotting area in pixel</p>
+<ul>
+<li><strong>height</strong> (default: 600) [int]</li>
+</ul>
+<p>height of the plotting area in pixel</p>
+<ul>
+<li><strong>plot_title</strong> (default: Bases alignment rate) [str]</li>
+</ul>
+<p>Title to display on top of the plot</p>
+<div class="codehilite"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">pycoQC</span><span class="p">(</span><span class="n">summary_file</span><span class="o">=</span><span class="s2">&quot;./large_data/sample_2_sequencing_summary.txt&quot;</span><span class="p">,</span> <span class="n">bam_file</span><span class="o">=</span><span class="s2">&quot;./large_data/sample_2.bam&quot;</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">alignment_rate</span><span class="p">()</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="n">jhelp</span><span class="p">(</span><span class="n">pycoQC_plot</span><span class="o">.</span><span class="n">alignment_reads_status</span><span class="p">)</span>
+</pre></div>
+
+<p><strong>alignment_reads_status</strong> (colors, width, height, plot_title)</p>
+<p>Plot a basic alignment summary</p>
+<hr />
+<ul>
+<li><strong>colors</strong> (default: ['#f44f39', '#fc8161', '#fcaf94', '<a class="magiclink magiclink-github magiclink-issue" href="https://github.com/a-slide/pycoQC/issues/828282" title="GitHub Issue: a-slide/pycoQC#828282">#828282</a>']) [list]</li>
+</ul>
+<p>List of colors (hex, rgb, rgba, hsl, hsv or any CSS named colors <a href="https://www.w3.org/TR/css-color-3/#svg-color">https://www.w3.org/TR/css-color-3/#svg-color</a></p>
+<ul>
+<li><strong>width</strong> (default: None) [int]</li>
+</ul>
+<p>With of the plotting area in pixel</p>
+<ul>
+<li><strong>height</strong> (default: 500) [int]</li>
+</ul>
+<p>height of the plotting area in pixel</p>
+<ul>
+<li><strong>plot_title</strong> (default: Summary of reads alignment status) [str]</li>
+</ul>
+<p>Title to display on top of the plot</p>
+<div class="codehilite"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">pycoQC</span><span class="p">(</span><span class="n">summary_file</span><span class="o">=</span><span class="s2">&quot;./large_data/sample_2_sequencing_summary.txt&quot;</span><span class="p">,</span> <span class="n">bam_file</span><span class="o">=</span><span class="s2">&quot;./large_data/sample_2.bam&quot;</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">alignment_reads_status</span><span class="p">()</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="n">jhelp</span><span class="p">(</span><span class="n">pycoQC_plot</span><span class="o">.</span><span class="n">alignment_coverage</span><span class="p">)</span>
+</pre></div>
+
+<p><strong>alignment_coverage</strong> (nbins, color, smooth_sigma, width, height, plot_title)</p>
+<p>Plot coverage over all the references</p>
+<hr />
+<ul>
+<li><strong>nbins</strong> (default: 500) [int]</li>
+</ul>
+<p>Number of bins to divide the coverage into.</p>
+<ul>
+<li>
+<p><strong>color</strong> (default: rgba(70,130,180,0.70)) [str]</p>
+</li>
+<li>
+<p><strong>smooth_sigma</strong> (default: 1) [int]</p>
+</li>
+</ul>
+<p>sigma parameter for the Gaussian filter line smoothing</p>
+<ul>
+<li><strong>width</strong> (default: None) [int]</li>
+</ul>
+<p>With of the plotting area in pixel</p>
+<ul>
+<li><strong>height</strong> (default: 500) [int]</li>
+</ul>
+<p>height of the plotting area in pixel</p>
+<ul>
+<li><strong>plot_title</strong> (default: Coverage overview) [str]</li>
+</ul>
+<p>Title to display on top of the plot</p>
+<div class="codehilite"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">pycoQC</span><span class="p">(</span><span class="n">summary_file</span><span class="o">=</span><span class="s2">&quot;./large_data/sample_2_sequencing_summary.txt&quot;</span><span class="p">,</span> <span class="n">bam_file</span><span class="o">=</span><span class="s2">&quot;./large_data/sample_2.bam&quot;</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">alignment_coverage</span><span class="p">()</span>
+</pre></div>
+
+<h2 id="generating-html-and-json-reports">Generating HTML and json reports</h2>
+<p>From version 2.3+ the PycoQC API can also generate an interactive HTML report and a text JSON report similar to the CLI functionality.</p>
+<div class="codehilite"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">pycoQC</span><span class="p">(</span>
+    <span class="n">summary_file</span><span class="o">=</span><span class="s2">&quot;./data/Albacore-1.7.0_basecall-1D-DNA_sequencing_summary.txt.gz&quot;</span><span class="p">,</span>
+    <span class="n">html_outfile</span><span class="o">=</span><span class="s2">&quot;./results2/Albacore-1.7.0_basecall-1D-DNA_API.html&quot;</span><span class="p">,</span>
+    <span class="n">json_outfile</span><span class="o">=</span><span class="s2">&quot;./results3/Albacore-1.7.0_basecall-1D-DNA_API.json&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span> <span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="n">Checking</span> <span class="n">arguments</span> <span class="k">values</span>
+<span class="k">Check</span> <span class="k">input</span> <span class="k">data</span> <span class="n">files</span>
+<span class="n">Parse</span> <span class="k">data</span> <span class="n">files</span>
+<span class="n">Merge</span> <span class="k">data</span>
+<span class="n">Cleaning</span> <span class="k">data</span>
+    <span class="n">Discarding</span> <span class="n">lines</span> <span class="n">containing</span> <span class="n">NA</span> <span class="k">values</span>
+        <span class="mi">0</span> <span class="k">reads</span> <span class="n">discarded</span>
+    <span class="n">Filtering</span> <span class="k">out</span> <span class="n">zero</span> <span class="k">length</span> <span class="k">reads</span>
+        <span class="mi">438</span> <span class="k">reads</span> <span class="n">discarded</span>
+    <span class="n">Sorting</span> <span class="n">run</span> <span class="n">IDs</span> <span class="k">by</span> <span class="n">decreasing</span> <span class="n">throughput</span>
+        <span class="n">Run</span><span class="o">-</span><span class="n">id</span> <span class="k">order</span> <span class="p">[</span><span class="s1">&#39;db5916f2fe7957afac1d0aaccdec883342c4bc31&#39;</span><span class="p">]</span>
+    <span class="n">Reordering</span> <span class="n">runids</span>
+        <span class="n">Processing</span> <span class="k">reads</span> <span class="k">with</span> <span class="n">Run_ID</span> <span class="n">db5916f2fe7957afac1d0aaccdec883342c4bc31</span> <span class="o">/</span> <span class="n">time</span> <span class="k">offset</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="n">Cleaning</span> <span class="n">up</span> <span class="n">low</span> <span class="n">frequency</span> <span class="n">barcodes</span>
+        <span class="mi">0</span> <span class="k">reads</span> <span class="k">with</span> <span class="n">low</span> <span class="n">frequency</span> <span class="n">barcode</span> <span class="n">unset</span>
+    <span class="k">Cast</span> <span class="n">value</span> <span class="k">to</span> <span class="n">appropriate</span> <span class="k">type</span>
+    <span class="n">Reindexing</span> <span class="n">dataframe</span> <span class="k">by</span> <span class="n">read_ids</span>
+        <span class="mi">9</span><span class="p">,</span><span class="mi">562</span> <span class="k">Final</span> <span class="k">valid</span> <span class="k">reads</span>
+<span class="n">Loading</span> <span class="n">plotting</span> <span class="n">interface</span>
+    <span class="k">Found</span> <span class="mi">9</span><span class="p">,</span><span class="mi">562</span> <span class="n">total</span> <span class="k">reads</span>
+    <span class="k">Found</span> <span class="mi">8</span><span class="p">,</span><span class="mi">042</span> <span class="n">pass</span> <span class="k">reads</span> <span class="p">(</span><span class="n">qual</span> <span class="o">&gt;=</span> <span class="mi">7</span><span class="p">.</span><span class="mi">0</span> <span class="k">and</span> <span class="k">length</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">Generating</span> <span class="n">HTML</span> <span class="n">report</span>
+    <span class="n">Parsing</span> <span class="n">html</span> <span class="n">config</span> <span class="n">file</span>
+    <span class="n">Running</span> <span class="k">method</span> <span class="n">run_summary</span>
+        <span class="n">Computing</span> <span class="n">plot</span>
+    <span class="n">Running</span> <span class="k">method</span> <span class="n">basecall_summary</span>
+        <span class="n">Computing</span> <span class="n">plot</span>
+    <span class="n">Running</span> <span class="k">method</span> <span class="n">alignment_summary</span>
+        <span class="k">No</span> <span class="n">Alignment</span> <span class="n">information</span> <span class="n">available</span>
+    <span class="n">Running</span> <span class="k">method</span> <span class="n">read_len_1D</span>
+        <span class="n">Computing</span> <span class="n">plot</span>
+    <span class="n">Running</span> <span class="k">method</span> <span class="n">align_len_1D</span>
+        <span class="k">No</span> <span class="n">Alignment</span> <span class="n">information</span> <span class="n">available</span>
+    <span class="n">Running</span> <span class="k">method</span> <span class="n">read_qual_1D</span>
+        <span class="n">Computing</span> <span class="n">plot</span>
+    <span class="n">Running</span> <span class="k">method</span> <span class="n">identity_freq_1D</span>
+        <span class="k">No</span> <span class="k">identity</span> <span class="n">frequency</span> <span class="n">information</span> <span class="n">available</span>
+    <span class="n">Running</span> <span class="k">method</span> <span class="n">read_len_read_qual_2D</span>
+        <span class="n">Computing</span> <span class="n">plot</span>
+    <span class="n">Running</span> <span class="k">method</span> <span class="n">read_len_align_len_2D</span>
+        <span class="k">No</span> <span class="n">Alignment</span> <span class="n">information</span> <span class="n">available</span>
+    <span class="n">Running</span> <span class="k">method</span> <span class="n">align_len_identity_freq_2D</span>
+        <span class="k">No</span> <span class="k">identity</span> <span class="n">frequency</span> <span class="n">information</span> <span class="n">available</span>
+    <span class="n">Running</span> <span class="k">method</span> <span class="n">read_qual_identity_freq_2D</span>
+        <span class="k">No</span> <span class="k">identity</span> <span class="n">frequency</span> <span class="n">information</span> <span class="n">available</span>
+    <span class="n">Running</span> <span class="k">method</span> <span class="n">output_over_time</span>
+        <span class="n">Computing</span> <span class="n">plot</span>
+    <span class="n">Running</span> <span class="k">method</span> <span class="n">read_len_over_time</span>
+        <span class="n">Computing</span> <span class="n">plot</span>
+    <span class="n">Running</span> <span class="k">method</span> <span class="n">read_qual_over_time</span>
+        <span class="n">Computing</span> <span class="n">plot</span>
+    <span class="n">Running</span> <span class="k">method</span> <span class="n">align_len_over_time</span>
+        <span class="k">No</span> <span class="n">Alignment</span> <span class="n">information</span> <span class="n">available</span>
+    <span class="n">Running</span> <span class="k">method</span> <span class="n">identity_freq_over_time</span>
+        <span class="k">No</span> <span class="k">identity</span> <span class="n">frequency</span> <span class="n">information</span> <span class="n">available</span>
+    <span class="n">Running</span> <span class="k">method</span> <span class="n">barcode_counts</span>
+        <span class="n">Computing</span> <span class="n">plot</span>
+    <span class="n">Running</span> <span class="k">method</span> <span class="n">channels_activity</span>
+        <span class="n">Computing</span> <span class="n">plot</span>
+    <span class="n">Running</span> <span class="k">method</span> <span class="n">alignment_reads_status</span>
+        <span class="k">No</span> <span class="n">Alignment</span> <span class="n">information</span> <span class="n">available</span>
+    <span class="n">Running</span> <span class="k">method</span> <span class="n">alignment_rate</span>
+        <span class="k">No</span> <span class="k">identity</span> <span class="n">frequency</span> <span class="n">information</span> <span class="n">available</span>
+    <span class="n">Running</span> <span class="k">method</span> <span class="n">alignment_coverage</span>
+        <span class="k">No</span> <span class="n">Alignment</span> <span class="n">information</span> <span class="n">available</span>
+    <span class="n">Loading</span> <span class="n">HTML</span> <span class="k">template</span>
+    <span class="n">Rendering</span> <span class="n">plots</span> <span class="k">in</span> <span class="n">d3js</span>
+    <span class="n">Writing</span> <span class="k">to</span> <span class="n">HTML</span> <span class="n">file</span>
+<span class="n">Generating</span> <span class="n">JSON</span> <span class="n">report</span>
+    <span class="n">Running</span> <span class="n">summary_stats_dict</span> <span class="k">method</span>
+    <span class="n">Compute</span> <span class="n">overall</span> <span class="n">summary</span> <span class="k">statistics</span>
+    <span class="n">Writing</span> <span class="k">to</span> <span class="n">JSON</span> <span class="n">file</span>
+
+
+    <span class="n">Barcode</span><span class="p">:</span> <span class="k">True</span>
+    <span class="n">Alignment</span><span class="p">:</span> <span class="k">False</span>
+    <span class="n">Promethion</span><span class="p">:</span> <span class="k">False</span>
+    <span class="k">All</span> <span class="k">reads</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span><span class="mi">562</span>
+    <span class="k">All</span> <span class="n">bases</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span><span class="mi">664</span><span class="p">,</span><span class="mi">334</span>
+    <span class="k">All</span> <span class="n">median</span> <span class="k">read</span> <span class="k">length</span><span class="p">:</span> <span class="mi">688</span><span class="p">.</span><span class="mi">5</span>
+    <span class="n">Pass</span> <span class="k">reads</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span><span class="mi">042</span>
+    <span class="n">Pass</span> <span class="n">bases</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span><span class="mi">823</span><span class="p">,</span><span class="mi">819</span>
+    <span class="n">Pass</span> <span class="n">median</span> <span class="k">read</span> <span class="k">length</span><span class="p">:</span> <span class="mi">716</span><span class="p">.</span><span class="mi">0</span>
+</pre></div>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../usage/" title="Using pycoQC" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Using pycoQC
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../CLI_usage/" title="Command line usage" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Command line usage
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2019 Adrien Leger & Tommaso Leonardi 
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.808e90bb.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>
